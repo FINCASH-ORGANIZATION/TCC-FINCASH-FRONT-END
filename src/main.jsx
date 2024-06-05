@@ -6,39 +6,35 @@ import Welcome from './Welcome/Welcome.jsx'
 import ErrorPage from './PaginaDeErro/RotaNaoEncontrada.jsx'
 import { Login } from './Login/Login.jsx'
 import { Register } from './Register/Register.jsx'
+import ForgotPassword from './ForgotPassword/ForgotPassword.jsx'
 
-// Componente de layout que inclui o header
-const LayoutWithHeader = ({ children }) => (
-  <>
-    <Header />
-    {children}
-  </>
-)
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LayoutWithHeader />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
         element: <Welcome />
+      },
+      {
+        path: "/Login",
+        element: <Login />
+      },
+      {
+        path: "/Registro",
+        element: <Register />
+      },
+      {
+        path: "/Esqueceu-Senha",
+        element: <ForgotPassword />
       }
     ],
   },
-  // Rota de login sem o header
-  {
-    path: "/Login",
-    element: <Login />
-  },
-  {
-    path: "/Registro",
-    element: <Register />
-  }
 ])
 
-// Renderiza o App.jsx, que por sua vez está contendo as rotas
+// Renderiza o App.jsx, que por sua vez está contendo as rotas, tais elas como: Pagina Welcome, login e afins. Isso tudo é renderizado e mostrado todo o esquema do front na tela.
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />

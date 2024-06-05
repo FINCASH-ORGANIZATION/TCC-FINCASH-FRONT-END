@@ -15,7 +15,7 @@ export default {
         amareloPastel: '#F6E58D',
         azulEscurso: '#222F3E',
         azulclaro: '#00B3FF'
-      }
+      },
     },
   },
   plugins: [],
