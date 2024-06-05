@@ -11,6 +11,7 @@ export default {
         preto: '#000000',
         cinzaEscuro: '#151515',
         cinzaClaro: '#1D1D1D',
+        cinzaMaisClaro: '#4E4E4E',
         quaseBranco: '#FBFBFB',
         amareloPastel: '#F6E58D',
         azulEscurso: '#222F3E',

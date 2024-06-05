@@ -6,6 +6,7 @@ import Welcome from './Welcome/Welcome.jsx'
 import ErrorPage from './PaginaDeErro/RotaNaoEncontrada.jsx'
 import { Login } from './Login/Login.jsx'
 import { Register } from './Register/Register.jsx'
+import { Home } from './Home/Home.jsx'
 import ForgotPassword from './ForgotPassword/ForgotPassword.jsx'
 
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/Esqueceu-Senha",
         element: <ForgotPassword />
+      },
+      {
+        path: "/Home",
+        element: <Home />
       }
     ],
   },

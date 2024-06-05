@@ -55,7 +55,7 @@ export function Register() {
                             {errors.sobrenome && <span>{errors.sobrenome.message}</span>}
 
                             <h2 className="text-3xl text-quaseBranco my-2">Endereço de email</h2>
-                            <div className="col-span-2">   
+                            <div className="col-span-2">
                                 <Input
                                     type="email"
                                     placeholder=""
@@ -63,7 +63,7 @@ export function Register() {
                                     register={register}
                                     className="col-span-2">
                                 </Input>
-                                {errors.email && <span>{errors.email.message}</span>}
+                                {errors.email && <span style={{ color: 'red' }}>{errors.email.message}</span>}
                             </div>
                             <h2 className="text-3xl text-quaseBranco my-2">Senha</h2>
                             <h2 className="text-3xl text-quaseBranco my-2">Repita a senha</h2>
@@ -73,7 +73,7 @@ export function Register() {
                                 name="senha"
                                 register={register}
                                 className="">
-                            </Input>                            
+                            </Input>
                             <Input
                                 type="senha"
                                 placeholder=""
@@ -84,8 +84,8 @@ export function Register() {
                         </div>
 
                         <button className="bg-amareloPastel text-3xl font-bold font-mono my-4" type="submit" style={{ width: '100%', height: '5rem', borderRadius: '10px' }}>
-                                Conecte-se
-                            </button>
+                            Conecte-se
+                        </button>
 
                         <div className="flex flex-row justify-center mt-2">
                             <h2 className="font-normal text-3xl text-quaseBranco">Já tem cadastro?</h2>
