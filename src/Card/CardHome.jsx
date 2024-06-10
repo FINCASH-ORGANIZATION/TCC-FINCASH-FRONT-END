@@ -1,7 +1,7 @@
 export function CardHome() {
     return (
         <>
-        <div className="bg-cinzaEscuro ml-56 w-screen h-screen font-mono flex items-center justify-center">
+        <div className="bg-cinzaEscuro ml-56 w-screen h-screen font-mono flex justify-center mt-48 ">
             <div className="Card bg-cinzaClaro2 m-8 w-2/12 h-1/6 rounded-3xl">
                 <div className="flex ">
                     <h1 className="p-4 text-4xl text-cinzaClaro5">Saldo</h1>

@@ -8,6 +8,9 @@ import { Login } from './Login/Login.jsx'
 import { Register } from './Register/Register.jsx'
 import { Home } from './Home/Home.jsx'
 import ForgotPassword from './ForgotPassword/ForgotPassword.jsx'
+import Cartoes from './paginasHome/Cartoes.jsx'
+import Contas from './paginasHome/Contas.jsx'
+import Transacao from './paginasHome/Transacao.jsx'
 
 
 const router = createBrowserRouter([
@@ -34,7 +37,19 @@ const router = createBrowserRouter([
       {
         path: "/Home",
         element: <Home />
-      }
+      },
+      {
+        path: "/Cartoes",
+        element: <Cartoes />
+      },
+      {
+        path: "/Contas",
+        element: <Cartoes />
+      },
+      {
+        path: "/Transacao",
+        element: <Cartoes />
+      },
     ],
   },
 ])
