@@ -1,4 +1,4 @@
-export default function CardCartao() {
+export default function CardReceita() {
     return (
         //card aqui
         a
