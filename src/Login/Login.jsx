@@ -52,7 +52,7 @@ export function Login() {
 
             <h2 className="text-3xl text-quaseBranco my-4">Senha</h2>
             <Input
-              type="password"
+              type="senha"
               placeholder=""
               name="senha"
               className=""
@@ -62,11 +62,11 @@ export function Login() {
             <Link to={"/Esqueceu-Senha"}>
               <h2 className="text-3xl">Esqueceu a senha?</h2>
             </Link>
-            <Link to={""}>
-              <button className="bg-amareloPastel text-3xl font-bold font-mono my-4 text-cinzaEscuro w-full py-4 rounded-lg" type='submit'>
-                Login
-              </button>
-            </Link>
+
+            <button className="bg-amareloPastel text-3xl font-bold font-mono my-4 text-cinzaEscuro w-full py-4 rounded-lg" type="submit">
+              Login
+            </button>
+
 
             <button onClick={handleGoogleLogin} className="bg-blue-500 text-3xl font-bold font-mono my-4 text-white w-full py-4 rounded-lg">
               Login com o Google
@@ -75,7 +75,7 @@ export function Login() {
             <div className="flex flex-row justify-center mt-2">
               <h2 className="text-3xl text-quaseBranco">Ainda não tem cadastro?</h2>
               <Link to={"/Registro"}>
-                <div className="ml-2 text-3xl"><h2 className="">Cadastre-se</h2></div>
+                <div className="ml-2 text-3xl"><h2>Cadastre-se</h2></div>
               </Link>
             </div>
 
