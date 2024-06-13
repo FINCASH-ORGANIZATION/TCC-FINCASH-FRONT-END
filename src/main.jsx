@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Header from './Welcome/Header'
+//import Header from './Welcome/Header'
 import Welcome from './Welcome/Welcome.jsx'
 import ErrorPage from './PaginaDeErro/RotaNaoEncontrada.jsx'
 import { Login } from './Login/Login.jsx'
 import { Register } from './Register/Register.jsx'
 import { Home } from './Home/Home.jsx'
 import ForgotPassword from './ForgotPassword/ForgotPassword.jsx'
-import Cartoes from './paginasHome/Cartoes.jsx'
-import Contas from './paginasHome/Contas.jsx'
-import Transacao from './paginasHome/Transacao.jsx'
+import Cartoes from './Pages/Cartoes.jsx'
+import Contas from './Pages/Contas.jsx'
+import Transacao from './Pages/Transacao.jsx'
 
 
 const router = createBrowserRouter([
@@ -44,11 +44,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/Contas",
-        element: <Cartoes />
+        element: <Contas />
       },
       {
         path: "/Transacao",
-        element: <Cartoes />
+        element: <Transacao />
       },
     ],
   },

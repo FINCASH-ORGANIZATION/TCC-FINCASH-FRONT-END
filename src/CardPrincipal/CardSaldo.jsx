@@ -7,6 +7,7 @@ export default function CardSaldo() {
         <div className="w-full flex flex-col">
           <span className="text-5xl text-cinzaClaro5" >Receitas</span>
           <span className="text-4xl text-white mt-6" >R$ 0,00</span>
+          <button className="bg-cinzaEscuro p-2 rounded-full shadow-lg shadow-cinzaClaro text-3xl text-cinzaClaro5 font-bold mt-6 w-5/12 hover:text-cinzaEscuro hover:bg-cinzaClaro5">Julho</button>
         </div>
 
 
@@ -37,7 +38,7 @@ export default function CardSaldo() {
         <div className="w-full flex flex-col">
           <span className="text-5xl text-cinzaClaro5" >Despesas</span>
           <span className="text-4xl text-white mt-6" >R$ 0,00</span>
-          <button className="bg-cinzaEscuro p-2 rounded-full shadow-lg shadow-cinzaClaro text-3xl text-cinzaClaro5 font-bold mt-6 w-5/12">Julho</button>
+          <button className="bg-cinzaEscuro p-2 rounded-full shadow-lg shadow-cinzaClaro text-3xl text-cinzaClaro5 font-bold mt-6 w-5/12 hover:text-cinzaEscuro hover:bg-cinzaClaro5">Julho</button>
         </div>
 
 
