@@ -3,8 +3,11 @@ export default function CardSaldo() {
     <div className="w-10/12 h-1/2 absolute mt-40 rounded-3xl flex justify-center">
       <div className="bg-cinzaClaro2 flex justify-around w-6/12 h-1/12 rounded-3xl mr-4 p-4 shadow-2xl shadow-black">
         <div className="w-full flex flex-col">
+          <span className="text-5xl text-cinzaClaro5" >Receitas</span>
+          <span className="text-4xl text-white mt-6" >R$ 0,00</span>
+          <button className="bg-cinzaEscuro p-2 rounded-full shadow-lg shadow-cinzaClaro text-3xl text-cinzaClaro5 font-bold mt-6 w-5/12 hover:text-cinzaEscuro hover:bg-cinzaClaro5">Julho</button>
           <span className="text-5xl text-cinzaClaro5">Receitas</span>
-          <span className="text-4xl text-white mt-6">R$ 0,00</span>
+          <span className="text-4xl text-white mt-6">R$ 0,00</spani
         </div>
 
         <div className="w-full flex flex-col items-end justify-between">
@@ -32,6 +35,9 @@ export default function CardSaldo() {
 
       <div className="bg-cinzaClaro2 flex justify-around w-6/12 h-1/12 rounded-3xl ml-4 p-4 shadow-2xl shadow-black">
         <div className="w-full flex flex-col">
+          <span className="text-5xl text-cinzaClaro5" >Despesas</span>
+          <span className="text-4xl text-white mt-6" >R$ 0,00</span>
+          <button className="bg-cinzaEscuro p-2 rounded-full shadow-lg shadow-cinzaClaro text-3xl text-cinzaClaro5 font-bold mt-6 w-5/12 hover:text-cinzaEscuro hover:bg-cinzaClaro5">Julho</button>
           <span className="text-5xl text-cinzaClaro5">Despesas</span>
           <span className="text-4xl text-white mt-6">R$ 0,00</span>
           <button className="bg-cinzaEscuro p-2 rounded-full shadow-lg shadow-cinzaClaro text-3xl text-cinzaClaro5 font-bold mt-6 w-5/12">
