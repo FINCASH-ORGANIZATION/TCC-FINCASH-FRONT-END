@@ -2,14 +2,14 @@ import { CardHome } from "../Card/CardHome.jsx";
 import { HeaderHome } from "../header/header.jsx";
 import NavigationBar from "../NavBar/NavBar.jsx";
 import CardSaldo from "../CardPrincipal/CardSaldo.jsx";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 
 export function Home() {
-  useEffect(() => {
+  /*useEffect(() => {
     CardSaldo();
     CardHome();
     console.log(Cookies.get("token"));
-  }, []);
+  }, []);*/
 
   return (
     <>
