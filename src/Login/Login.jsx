@@ -20,11 +20,10 @@ export function Login() {
   async function onSubmitLogin(data) {
     try {
       const response = await login(data);
-      Cookies.set("token", response.data.token, { expires: 1 });
-      console.log("token:", response.data.token);
+      Cookies.set("token", response.data, { expires: 1 });
       navigate("/Home");
     } catch (error) {
-      console.log(error);
+      console.log("Erro durante o login", error);
     }
   }
 
