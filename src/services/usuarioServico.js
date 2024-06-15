@@ -16,16 +16,6 @@ export function RegistrarUsu(data) {
 // Primeira função, segue para a Home, mas não retorna o token
 export function login(data) {
   const response = axios.post(`${baseURL}/auth`, data);
-  axios.post(`${baseURL}/auth`, data).then((response) => response.data);
   console.log(response.data);
   return response;
 }
-
-// Segunda função, NÃO segue para a Home, mas retorna o token
-/* export function login(data) {
-  const response = axios.post(`${baseURL}/auth`, data);
-  axios.post(`${baseURL}/auth`, data).then((response) => {
-    console.log(response.data);
-    return response.data;
-  });
-};*/

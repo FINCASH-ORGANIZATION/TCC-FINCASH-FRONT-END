@@ -7,13 +7,8 @@ import Cookies from "js-cookie";
 
 export function Home() {
   useEffect(() => {
-    // O useEffect só é executado uma vez, quando o componente é montado
+    console.log(Cookies.get('token'));
   }, []);
-
-  const imprimirToken = () => {
-    findPost();
-    console.log(Cookies.get("token"));
-  };
 
   return (
     <>
@@ -22,7 +17,6 @@ export function Home() {
         <CardHome />
         <CardSaldo />
         <NavigationBar />
-        <button onClick={imprimirToken}>Imprimir token</button>
       </div>
     </>
   );
