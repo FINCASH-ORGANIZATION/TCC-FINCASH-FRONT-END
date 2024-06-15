@@ -2,14 +2,18 @@ import { CardHome } from "../Card/CardHome.jsx";
 import { HeaderHome } from "../header/header.jsx";
 import NavigationBar from "../NavBar/NavBar.jsx";
 import CardSaldo from "../CardPrincipal/CardSaldo.jsx";
-//import { useEffect } from "react";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 export function Home() {
-  /*useEffect(() => {
-    CardSaldo();
-    CardHome();
+  useEffect(() => {
+    // O useEffect só é executado uma vez, quando o componente é montado
+  }, []);
+
+  const imprimirToken = () => {
+    findPost();
     console.log(Cookies.get("token"));
-  }, []);*/
+  };
 
   return (
     <>
@@ -18,6 +22,7 @@ export function Home() {
         <CardHome />
         <CardSaldo />
         <NavigationBar />
+        <button onClick={imprimirToken}>Imprimir token</button>
       </div>
     </>
   );

@@ -3,21 +3,12 @@ import { Input } from "../input/input.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { registroSchema } from "../Schema/registroSchema";
-import { CriarUsu } from "../services/usuarioServico.js";
+import { RegistrarUsu } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
 
-async function onSubmitRegistro(data) {
-  try {
-    const response = await CriarUsu(data);
-    Cookies.set("token", response.data.token, { expires: 1 });
-
-    useNavigate("/");
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 export function Register() {
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -25,6 +16,16 @@ export function Register() {
   } = useForm({
     resolver: zodResolver(registroSchema),
   });
+
+  async function onSubmitRegistro(data) {
+    try {
+      const response = await RegistrarUsu(data);
+      Cookies.set("token", response.data.token, { expires: 1 });
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
