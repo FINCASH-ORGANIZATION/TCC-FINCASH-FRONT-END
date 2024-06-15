@@ -1,0 +1,38 @@
+
+   /* Estilos para telas médias */
+   @media (min-width: 768px) and (max-width: 1199px) {
+    .bg-cinzaEscuro {
+       height: 90vh; /* altura do container */
+     }
+     h1 {
+       font-size: 48px; /* tamanho da fonte do título */
+       margin-top: 30px; /* margem superior do título */
+     }
+     p {
+       font-size: 20px; /* tamanho da fonte do parágrafo */
+     }
+     button {
+       padding: 12px 24px; /* padding do botão */
+       font-size: 20px; /* tamanho da fonte do botão */
+       margin-top: 20px; /* margem superior do botão */
+     }
+   }
+   
+   /* Estilos para telas pequenas */
+   @media (max-width: 767px) {
+    .bg-cinzaEscuro {
+       height: 80vh; /* altura do container */
+     }
+     h1 {
+       font-size: 36px; /* tamanho da fonte do título */
+       margin-top: 20px; /* margem superior do título */
+     }
+     p {
+       font-size: 16px; /* tamanho da fonte do parágrafo */
+     }
+     button {
+       padding: 8px 16px; /* padding do botão */
+       font-size: 16px; /* tamanho da fonte do botão */
+       margin-top: 15px; /* margem superior do botão */
+     }
+   }

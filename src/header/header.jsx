@@ -6,9 +6,7 @@ export function HeaderHome() {
           <img src="./src/Image/logofincash.png" alt="" className="" />
           <span className="text-5xl">fincash</span>
         </div>
-        <a href="" className="pr-16 text-4xl text-white ">
-          Home
-        </a>
+        
         <a href="" className="pr-16 text-4xl text-white ">
           Sobre os criadores
         </a>

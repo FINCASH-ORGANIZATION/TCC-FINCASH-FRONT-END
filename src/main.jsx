@@ -11,6 +11,7 @@ import ForgotPassword from './ForgotPassword/ForgotPassword.jsx'
 import Cartoes from './Pages/Cartoes.jsx'
 import Contas from './Pages/Contas.jsx'
 import Transacao from './Pages/Transacao.jsx'
+import Perfil from './Pages/Perfil.jsx'
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
         path: "/Transacao",
         element: <Transacao />
       },
+      {
+        path: "/Perfil",
+        element: <Perfil />
+      }
     ],
   },
 ])
