@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const baseURL = "http://localhost:3000";
 
@@ -14,8 +15,22 @@ export function RegistrarUsu(data) {
 }
 
 // Primeira função, segue para a Home, mas não retorna o token
-export function login(data) {
+export function loginUsu(data) {
   const response = axios.post(`${baseURL}/auth`, data);
   console.log(response.data);
   return response;
+}
+
+export async function UsuarioLogado() {
+  try {
+    const response = await axios.get(`${baseURL}/Usuario/`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Erro ao buscar usuário logado:", error);
+    throw error;
+  }
 }

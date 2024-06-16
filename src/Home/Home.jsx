@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 export function Home() {
   useEffect(() => {
-    console.log(Cookies.get('token'));
+    console.log(Cookies.get("token"));
   }, []);
 
   return (

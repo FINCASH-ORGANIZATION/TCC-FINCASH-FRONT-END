@@ -4,7 +4,7 @@ import { loginSchema } from "../Schema/loginSchema";
 import { Input } from "../input/input.jsx";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/usuarioServico.js";
+import { loginUsu } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
 
 export function Login() {
@@ -19,7 +19,7 @@ export function Login() {
 
   async function onSubmitLogin(data) {
     try {
-      const response = await login(data);
+      const response = await loginUsu(data);
       Cookies.set("token", response.data, { expires: 1 });
       navigate("/Home");
     } catch (error) {
@@ -37,23 +37,16 @@ export function Login() {
 
         <form onSubmit={handleSubmit(onSubmitLogin)} className="mt-8">
           <h2 className="text-3xl text-quaseBranco my-4">Endereço de email</h2>
-          <Input
-            type="email"
-            placeholder=""
-            name="email"
-            className=""
-            register={register}
-          />
+          <Input type="email" placeholder="" name="email" register={register} />
           {errors.email && (
             <span style={{ color: "red" }}>{errors.email.message}</span>
           )}
 
           <h2 className="text-3xl text-quaseBranco my-4">Senha</h2>
           <Input
-            type="password"
+            type="senha"
             placeholder=""
             name="senha"
-            className=""
             register={register}
           />
           {errors.senha && (

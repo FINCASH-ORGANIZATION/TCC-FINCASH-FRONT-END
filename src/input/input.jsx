@@ -1,12 +1,5 @@
-import React from "react";
-import "./InputStyled.css"
+import "./InputStyled.css";
 
 export const Input = ({ type, placeholder, name, register }) => {
-    return (
-        <input
-            type={type}
-            placeholder={placeholder}
-            {...register(name)}
-        />
-    );
+  return <input type={type} placeholder={placeholder} {...register(name)} />;
 };
