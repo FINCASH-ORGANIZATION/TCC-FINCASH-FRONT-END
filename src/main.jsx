@@ -1,18 +1,17 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //import Header from './Welcome/Header'
-import Welcome from './Welcome/Welcome.jsx'
-import ErrorPage from './PaginaDeErro/RotaNaoEncontrada.jsx'
-import { Login } from './Login/Login.jsx'
-import { Register } from './Register/Register.jsx'
-import { Home } from './Home/Home.jsx'
-import ForgotPassword from './ForgotPassword/ForgotPassword.jsx'
-import Cartoes from './Pages/Cartoes.jsx'
-import Contas from './Pages/Contas.jsx'
-import Transacao from './Pages/Transacao.jsx'
-import Perfil from './Pages/Perfil.jsx'
-
+import Welcome from "./Welcome/Welcome.jsx";
+import ErrorPage from "./PaginaDeErro/RotaNaoEncontrada.jsx";
+import { Login } from "./Login/Login.jsx";
+import { Register } from "./Register/Register.jsx";
+import { Home } from "./Home/Home.jsx";
+import { EsqueceuSenha } from "./ForgotPassword/ForgotPassword.jsx";
+import Cartoes from "./Pages/Cartoes.jsx";
+import Contas from "./Pages/Contas.jsx";
+import Transacao from "./Pages/Transacao.jsx";
+import Perfil from "./Pages/Perfil.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,47 +20,47 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Welcome />
+        element: <Welcome />,
       },
       {
         path: "/Login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "/Registro",
-        element: <Register />
+        element: <Register />,
       },
       {
         path: "/Esqueceu-Senha",
-        element: <ForgotPassword />
+        element: <EsqueceuSenha />,
       },
       {
         path: "/Home",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/Cartoes",
-        element: <Cartoes />
+        element: <Cartoes />,
       },
       {
         path: "/Contas",
-        element: <Contas />
+        element: <Contas />,
       },
       {
         path: "/Transacao",
-        element: <Transacao />
+        element: <Transacao />,
       },
       {
         path: "/Perfil",
-        element: <Perfil />
-      }
+        element: <Perfil />,
+      },
     ],
   },
-])
+]);
 
 // Renderiza o App.jsx, que por sua vez está contendo as rotas, tais elas como: Pagina Welcome, login e afins. Isso tudo é renderizado e mostrado todo o esquema do front na tela.
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
-)
+);
