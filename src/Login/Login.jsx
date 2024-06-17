@@ -43,12 +43,7 @@ export function Login() {
           )}
 
           <h2 className="text-3xl text-quaseBranco my-4">Senha</h2>
-          <Input
-            type="senha"
-            placeholder=""
-            name="senha"
-            register={register}
-          />
+          <Input type="senha" placeholder="" name="senha" register={register} />
           {errors.senha && (
             <span style={{ color: "red" }}>{errors.senha.message}</span>
           )}

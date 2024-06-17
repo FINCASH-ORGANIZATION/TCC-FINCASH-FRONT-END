@@ -16,14 +16,14 @@ export function RegistrarUsu(data) {
 
 // Primeira função, segue para a Home, mas não retorna o token
 export function loginUsu(data) {
-  const response = axios.post(`${baseURL}/auth`, data);
+  const response = axios.post(`${baseURL}/auth/Login`, data);
   console.log(response.data);
   return response;
 }
 
 export async function UsuarioLogado() {
   try {
-    const response = await axios.get(`${baseURL}/Usuario/`, {
+    const response = await axios.get(`${baseURL}/Usuario/pes/`, {
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
