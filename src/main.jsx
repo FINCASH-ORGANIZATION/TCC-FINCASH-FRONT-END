@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-//import Header from './Welcome/Header'
 import Welcome from "./Welcome/Welcome.jsx";
 import ErrorPage from "./PaginaDeErro/RotaNaoEncontrada.jsx";
 import { Login } from "./Login/Login.jsx";
@@ -12,6 +11,7 @@ import Cartoes from "./Pages/Cartoes.jsx";
 import Contas from "./Pages/Contas.jsx";
 import Transacao from "./Pages/Transacao.jsx";
 import Perfil from "./Pages/Perfil.jsx";
+import UserProvider, { UserContext } from "./Context/usuarioContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +61,8 @@ const router = createBrowserRouter([
 // Renderiza o App.jsx, que por sua vez está contendo as rotas, tais elas como: Pagina Welcome, login e afins. Isso tudo é renderizado e mostrado todo o esquema do front na tela.
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );
