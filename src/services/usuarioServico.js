@@ -8,6 +8,7 @@ export function RegistrarUsu(data) {
 
   const body = {
     ...data,
+    avatar: "https://pbs.twimg.com/media/ClhB3oZVAAAF6Hh.jpg:large",
   };
 
   const response = axios.post(`${baseURL}/Usuario`, body);
