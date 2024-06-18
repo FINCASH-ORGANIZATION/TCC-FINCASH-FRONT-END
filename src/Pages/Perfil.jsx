@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HeaderHome } from "../header/header.jsx";
 import { UsuarioLogado } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 export default function Perfil() {
   const [user, setUsuario] = useState({});
@@ -30,7 +31,7 @@ export default function Perfil() {
     <>
       <HeaderHome />
       <div className="bg-cinzaEscuro w-screen h-screen font-mono flex flex-col items-center justify-center">
-        <div className="bg-cinzaClaro1 flex flex-col justify-center items-center pr-20 pl-20 pt-10 rounded-3xl shadow-2xl shadow-black">
+        <div className="bg-cinzaClaro1 flex flex-col justify-center items-center pr-3 pl-3 pt-10 rounded-3xl shadow-2xl shadow-black">
           <img src="" alt="" />
 
           <button className="transition-all rounded-full bg-amareloPastel px-3 py-3 font-medium text-black hover:bg-amber-300">
@@ -66,21 +67,32 @@ export default function Perfil() {
             </div>
           </div>
 
-          <div className="flex justify-between mt-20 w-full">
+          <div className="grid grid-cols-3 gap-2">
+            <Link to="/home">
             <button
-              className="bg-azulclaro text-3xl font-bold font-mono px-9 my-4 mr-3 text-quaseBranco py-4 rounded-lg"
+              className="bg-green-600 text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
+              type="submit"
+            >
+              Voltar
+            </button>
+            </Link>
+
+            <button
+              className="bg-azulclaro text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
               type="submit"
             >
               Editar
             </button>
 
             <button
-              className="bg-red-500 text-3xl font-bold font-mono px-12 my-4 ml-3 text-quaseBranco py-4 rounded-lg"
+              className="bg-red-500 text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
               type="submit"
               onClick={Deslogar}
             >
               Sair
             </button>
+
+            
           </div>
         </div>
       </div>

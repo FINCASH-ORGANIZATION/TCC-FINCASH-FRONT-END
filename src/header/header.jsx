@@ -34,12 +34,12 @@ export function HeaderHome() {
               className="w-24 h-24"
             />
           )}
-
+          <img src="../src/Image/logofincash.png" alt="" className="w-16 h-16" />
           <span className="text-5xl">fincash</span>
         </div>
 
-        <a className="pr-16 text-4xl text-white">Sobre os criadores</a>
-        <a className="pr-10 text-4xl text-white">Contato</a>
+        <a className="pr-16 text-3xl text-white">Sobre os criadores</a>
+        <a className="pr-10 text-3xl text-white">Contato</a>
 
         {user ? (
           <p>{user.nome}</p>

@@ -16,7 +16,7 @@ export function Home() {
       <div className="bg-cinzaEscuro w-screen h-screen font-mono flex flex-col items-center justify-center">
         <CardHome />
         <CardSaldo />
-        <NavigationBar />
+        <NavigationBar /> 
       </div>
     </>
   );
