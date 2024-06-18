@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { UsuarioLogado } from "../services/usuarioServico";
 import { Link } from "react-router-dom";
+import { UserContext } from "../Context/usuarioContext";
 
 export function HeaderHome() {
-  const [user, setUsuario] = useState({});
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     async function pesUsuarioLogado() {
       try {
         const response = await UsuarioLogado();
-        setUsuario(response.data.usuario);
+        setUser(response.data.usuario);
       } catch (error) {
         console.log(error);
       }
@@ -25,6 +26,7 @@ export function HeaderHome() {
     <header className="absolute bg-cinzaEscuro shadow-lg shadow-black flex h-28 w-screen items-center justify-end font-mono">
       <nav className="flex items-center text-branco">
         <div className="absolute flex items-center left-0 ml-16 w-24 h-24">
+
           {!user.avatar ? (
             <img src={user.avatar} className="w-24 h-24" />
           ) : (

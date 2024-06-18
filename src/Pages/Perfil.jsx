@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { HeaderHome } from "../header/header.jsx";
 import { UsuarioLogado } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { UserContext } from "../Context/usuarioContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Perfil() {
-  const [user, setUsuario] = useState({});
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     async function pesUsuarioLogado() {
       try {
         const response = await UsuarioLogado();
-        setUsuario(response.data.usuario);
       } catch (error) {
         console.log(error);
       }
@@ -24,7 +25,8 @@ export default function Perfil() {
 
   function Deslogar() {
     Cookies.remove("token");
-    setUsuario(undefined);
+    setUser(undefined);
+    navigate("/");
   }
 
   return (
