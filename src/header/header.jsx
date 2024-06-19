@@ -23,7 +23,7 @@ export function HeaderHome() {
   }, []);
 
   return (
-    <header className="absolute bg-cinzaEscuro shadow-lg shadow-black flex h-28 w-screen items-center justify-end font-mono">
+    <header className="absolute bg-cinzaEscuro shadow-lg shadow-black flex h-44 w-screen items-center justify-end font-mono">
       <nav className="flex items-center text-branco">
         <div className="absolute flex items-center left-0 ml-16 w-24 h-24">
 
@@ -36,12 +36,12 @@ export function HeaderHome() {
               className="w-24 h-24"
             />
           )}
-          <img src="../src/Image/logofincash.png" alt="" className="w-16 h-16" />
-          <span className="text-5xl">fincash</span>
+          <img src="../src/Image/logofincash.png" alt="" className="w-32 h-28" />
+          <span className="text-8xl">fincash</span>
         </div>
 
-        <a className="pr-16 text-3xl text-white">Sobre os criadores</a>
-        <a className="pr-10 text-3xl text-white">Contato</a>
+        <a className="pr-16 text-6xl text-white">Sobre os criadores</a>
+        <a className="pr-10 text-6xl text-white">Contato</a>
 
         {user ? (
           <p>{user.nome}</p>
@@ -53,7 +53,7 @@ export function HeaderHome() {
 
         <Link to="/perfil">
           <button className="transition-all rounded-full bg-amareloPastel px-3 py-3 font-medium text-black hover:bg-amber-300 mr-16">
-            <img src={user.avatar} alt="Perfil" className="w-14 h-14" />
+            <img src={user.avatar} alt="Perfil" className="w-24 h-24" />
           </button>
         </Link>
       </nav>

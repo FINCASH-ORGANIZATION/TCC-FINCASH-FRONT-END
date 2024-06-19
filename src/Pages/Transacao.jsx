@@ -2,7 +2,6 @@ import NavigationBar from "../NavBar/NavBar.jsx";
 import { HeaderHome } from "../header/header.jsx";
 import { CardTransacao } from "../CardPrincipal/CardTransacao.jsx"
 
-
 export default function Cartoes() {
     return (
         <>
