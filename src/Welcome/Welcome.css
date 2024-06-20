@@ -1,5 +1,5 @@
 
-   /* Estilos para telas médias */
+  /* Estilos para telas médias */
    @media (min-width: 768px) and (max-width: 1199px) {
     .bg-cinzaEscuro {
        height: 90vh; /* altura do container */
@@ -35,4 +35,11 @@
        font-size: 16px; /* tamanho da fonte do botão */
        margin-top: 15px; /* margem superior do botão */
      }
+   }
+
+
+   .tittle {
+    font-size: 250px;
+    font-family: monospace;
+    font-weight: 800;
    }
