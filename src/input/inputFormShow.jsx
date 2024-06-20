@@ -1,9 +1,4 @@
-export const Input = ({ type, placeholder, name, register }) => {
-  return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      {...register(name, { required: true })}
-    />
-  );
+
+export const Input = ({ type, placeholder, name }) => {
+  return <input type={type} placeholder={placeholder} />;
 };

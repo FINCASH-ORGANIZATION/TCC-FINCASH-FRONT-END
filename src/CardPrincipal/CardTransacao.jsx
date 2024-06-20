@@ -1,41 +1,66 @@
 import '../CardPrincipal/CardTransacao.css'
+import { Input } from '../input/inputFormShow'
 
 
 export function CardTransacao() {
     return (
-        <div className="w-10/12 h-1/2 absolute rounded-3xl flex justify-center">
-            <div className="bg-cinzaClaro2 w-11/12 h-1/12 rounded-3xl p-10 shadow-2xl shadow-black">
-                <div className="Top">
-                    <div className='flex justify-between '>
-                        <span className='text-8xl text-cinzaClaro5'>Transações</span>
-                        <img src="../src/Image/transacao.png" alt="" className='w-40 h-40'/>
-                    </div>
-                    <span className='text-8xl text-white'>R$ 0,00</span>
+        <div className="w-11/12 h-6/12 absolute mt-40 flex flex-col justify-center">
+            <div className="bg-cinzaClaro2 w-full h-6/12 p-10 shadow-2xl shadow-black flex items-center rounded-3xl">
+                <div className='left w-full h-full'>
+                    <span className='text-8xl text-cinzaClaro5'>Transações</span>
                 </div>
-                <div className="Bottom flex items-end justify-center w-full h-4/6 mt-20">
-                <div className=" grid grid-cols-4 gap-10 mt-10 w-full">
-                    <div className="bg-cinzaClaro3 rounded-3xl p-4 shadow-2xl shadow-black">
-                        <h1 className="text-white text-7xl">Saldo</h1>
-                        <span className="text-white text-8xl mt-10">R$ 0,00</span>
-                    </div>
+                <div className='right w-full flex justify-end'>
 
-                    <div className="bg-cinzaClaro3 rounded-3xl p-4 shadow-2xl shadow-black">
-                        <h1 className="text-white text-7xl">Receita</h1>
-                        <span className="text-white text-8xl mt-10">R$ 0,00</span>
-                    </div>
+                    <Input 
+                        type="pesquisa" 
+                        placeholder="Pesquise por descrição, valor ou categoria" 
+                        name="pesquisa" 
+                        className='w-8/12 h-28 rounded-full mr-10 p-10 bg-white flex justify-end items-center'>
+                        <img src="../src/Image/search.png" alt="" className='w-20 h-20' />
+                    </Input>
 
-                    <div className="bg-cinzaClaro3 rounded-3xl p-4 shadow-2xl shadow-black">
-                        <h1 className="text-white text-7xl">Despesas</h1>
-                        <span className="text-white text-8xl mt-10">R$ 0,00</span>
-                    </div>
-
-                    <div className="bg-cinzaClaro3 rounded-3xl p-4 shadow-2xl shadow-black">
-                        <h1 className="text-white text-7xl">Balanço</h1>
-                        <span className="text-white text-8xl mt-10">R$ 0,00</span>
-                    </div>
                 </div>
-              </div>
-              </div>
+            </div>
+
+            <div className="bg-cinzaClaro2 h-6/12 mt-20 shadow-2xl shadow-black flex justify-center rounded-3xl">
+                <body class="bg-cinzaClaro2 w-full rounded-3xl">
+                    <div class="bg-cinzaClaro2 shadow-md rounded-3xl">
+                        <table class="w-full border-collapse ">
+                            <thead>
+                                <tr class="bg-white text-left text-7xl font-medium text-cinzaClaro2 ">
+                                    <th class="px-4 py-10">Data</th>
+                                    <th class="px-4 py-10">Descrição</th>
+                                    <th class="px-4 py-10">Categoria</th>
+                                    <th class="px-4 py-10">Conta</th>
+                                    <th class="px-4 py-10">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-cinzaClaro3 text-6xl text-white rounded-3xl ">
+                                    <td class="px-4 py-10">19/06/2024</td>
+                                    <td class="px-4 py-10">Casa</td>
+                                    <td class="px-4 py-10">Casa</td>
+                                    <td class="px-4 py-10">Carteira</td>
+                                    <td class="px-4 py-10 text-red-500">R$ 1.212,12</td>
+                                </tr>
+                                <tr class="hover:bg-cinzaClaro3 text-6xl text-white rounded-3xl">
+                                    <td class="px-4 py-10">19/06/2024</td>
+                                    <td class="px-4 py-10">Investimento</td>
+                                    <td class="px-4 py-10">Investimento</td>
+                                    <td class="px-4 py-10">Carteira</td>
+                                    <td class="px-4 py-10 text-green-500">R$ 121.212,12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 flex items-center p-5">
+                        <div class="flex items-center">
+                            <div className='text-6xl text-white'>Linhas por página:</div>
+                            <span className='text-6xl text-white'>2</span>
+                        </div>
+                    </div>
+                </body>
+            </div>
         </div>
     )
 }

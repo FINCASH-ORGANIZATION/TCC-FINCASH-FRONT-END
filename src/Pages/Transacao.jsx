@@ -10,7 +10,7 @@ export default function Cartoes() {
                 <CardTransacao />
                 <NavigationBar />
             </div>
-            
+                
         </>
     )
 

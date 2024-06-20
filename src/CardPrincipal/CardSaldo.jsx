@@ -13,7 +13,7 @@ export default function CardSaldo() {
             <span className='text-8xl text-white'>R$ 0,00</span>
           </div><br /><br />
           <div className='flex items-end mt-28'>
-            <button className='bg-azulclaro text-7xl rounded-xl p-6'>Editar</button>
+            <button className='bg-azulclaro text-7xl text-white rounded-xl p-6'>Editar</button>
           </div>
         </div>
         <div className='right w-full flex justify-end'>

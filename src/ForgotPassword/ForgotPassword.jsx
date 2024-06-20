@@ -49,8 +49,8 @@ export function EsqueceuSenha() {
     <div className="bg-cinzaEscuro min-h-screen flex items-center justify-center">
       <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
         <div className="text-center">
-          <div className="text-3xl text-amareloPastel">fincash</div>
-          <div className="text-5xl text-quaseBranco">Esqueceu sua senha</div>
+          <div className="text-6xl text-amareloPastel">fincash</div>
+          <div className="text-8xl text-quaseBranco">Esqueceu sua senha</div>
         </div>
 
         {/* Formulário para enviar o email de recuperação de senha */}
@@ -59,7 +59,7 @@ export function EsqueceuSenha() {
             onSubmit={handleSubmitEmail(onSubmitEsqueciSenha)}
             className="mt-8"
           >
-            <h2 className="text-3xl text-quaseBranco my-4">
+            <h2 className="text-6xl text-quaseBranco my-5">
               Endereço de email
             </h2>
 
@@ -75,7 +75,7 @@ export function EsqueceuSenha() {
             )}
 
             <button
-              className="bg-amareloPastel text-3xl font-bold font-mono my-4 w-full py-4 rounded-lg"
+              className="bg-amareloPastel text-6xl font-bold font-mono my-4 mt-10 w-full py-10 text-cinzaEscuro rounded-xl shadow-xl shadow-black"
               type="submit"
             >
               Nova Senha
@@ -88,7 +88,7 @@ export function EsqueceuSenha() {
             onSubmit={handleSubmitToken(onSubmitTokenForm)}
             className="mt-8"
           >
-            <div className="text-3xl text-quaseBranco my-4">
+            <div className="text-6xl text-quaseBranco my-5">
               Token de Verificação
             </div>
 
@@ -108,7 +108,7 @@ export function EsqueceuSenha() {
             </div>
 
             <button
-              className="bg-amareloPastel text-3xl font-bold font-mono my-4 w-full py-4 rounded-lg"
+              className="bg-amareloPastel text-6xl font-bold font-mono my-4 mt-10 w-full py-10 text-cinzaEscuro rounded-xl shadow-xl shadow-black"
               type="submit"
             >
               Verificar
