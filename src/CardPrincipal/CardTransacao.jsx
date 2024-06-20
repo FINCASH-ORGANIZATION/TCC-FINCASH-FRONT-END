@@ -15,8 +15,7 @@ export function CardTransacao() {
                         type="pesquisa" 
                         placeholder="Pesquise por descrição, valor ou categoria" 
                         name="pesquisa" 
-                        className='w-8/12 h-28 rounded-full mr-10 p-10 bg-white flex justify-end items-center'>
-                        <img src="../src/Image/search.png" alt="" className='w-20 h-20' />
+                        className=''>
                     </Input>
 
                 </div>
