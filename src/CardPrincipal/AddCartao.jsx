@@ -15,8 +15,8 @@ export default function AddCartao() {
           <input className="input" type="text" placeholder="Data da vencimento"></input>
         <br />
         <div className="flex justify-between mt-20">
-            <button className="bg-teal-500 p-10 rounded-2xl text-7xl text-white">Salvar</button>
-            <button className="bg-rose-500 p-10 rounded-2xl text-7xl text-white">Voltar</button>
+            <button className="bg-cinzaClaro6 p-5 px-20 rounded-full text-7xl text-white">Salvar</button>
+            <button className="bg-cinzaClaro6 p-5 px-20 rounded-full text-7xl text-white">Voltar</button>
         </div>
       </div>
     </div>
