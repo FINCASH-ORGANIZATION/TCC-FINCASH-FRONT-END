@@ -13,7 +13,7 @@ export function Home() {
   return (
     <>
       <HeaderHome />
-      <div className="bg-cinzaEscuro w-screen h-screen font-mono flex flex-col items-center justify-center">
+      <div className="bg-cinzaEscuro w-screen h-screen font-mono flex flex-col items-center justify-center ">
         <CardHome />
         <CardSaldo />
         <NavigationBar /> 
