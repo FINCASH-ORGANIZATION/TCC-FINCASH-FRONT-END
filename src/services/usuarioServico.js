@@ -35,8 +35,6 @@ export async function UsuarioLogado() {
     throw error;
   }
 }
-<<<<<<< Updated upstream
-=======
 
 export async function esqueceuSenhaRedefinir(data) {
   try {
@@ -61,4 +59,3 @@ export async function esqueceuSenhaAtualizar(requestData) {
     throw error;
   }
 }
->>>>>>> Stashed changes

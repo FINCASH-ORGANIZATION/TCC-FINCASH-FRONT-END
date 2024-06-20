@@ -1,26 +1,13 @@
 import { EsqueceuSenhaSchema } from "../Schema/esqueceuSenhaSchema.js";
-import { Input } from "../input/input.jsx";
-import { InputFormShow } from "../input/inputFormShow.jsx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-<<<<<<< Updated upstream
-import { useState } from "react";
-import "./ForgotPassword.css";
-
-function onSubmitEsqueciSenha(data) {
-  console.log(data);
-}
-=======
 import { useState, useEffect, useCallback } from "react";
-import { Input } from "../input/inputFormShow";
-import { EsqueceuSenhaSchema } from "../Schema/esqueceuSenhaSchema";
+import { Input } from "../input/input.jsx";
 import "./ForgotPassword.css";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   esqueceuSenhaAtualizar,
   esqueceuSenhaRedefinir,
 } from "../services/usuarioServico";
->>>>>>> Stashed changes
 
 export function EsqueceuSenha() {
   const [showOtpForm, setShowOtpForm] = useState(false);
@@ -28,17 +15,9 @@ export function EsqueceuSenha() {
   const [senhatoken, setSenhatoken] = useState("");
 
   const {
-<<<<<<< Updated upstream
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(EsqueceuSenhaSchema),
-=======
     register: registerEmail,
     handleSubmit: handleSubmitEmail,
     formState: { errors: errorsEmail },
-    setValue: setEmailValue,
     getValues: getEmailValue,
   } = useForm({
     resolver: zodResolver(EsqueceuSenhaSchema.pick({ email: true })),
@@ -48,28 +27,20 @@ export function EsqueceuSenha() {
     register: registerSenhatoken,
     handleSubmit: handleSubmitSenhatoken,
     formState: { errors: errorsSenhatoken },
-    setValue: setSenhatokenValue,
     getValues: getSenhatokenValue,
   } = useForm({
     resolver: zodResolver(EsqueceuSenhaSchema.pick({ senhatoken: true })),
->>>>>>> Stashed changes
   });
 
   const {
     register: registerSenha,
     handleSubmit: handleSubmitSenha,
     formState: { errors: errorsSenha },
-    setValue: setSenhaValue,
     getValues: getSenhaValue,
   } = useForm({
     resolver: zodResolver(EsqueceuSenhaSchema.pick({ senha: true })),
   });
 
-<<<<<<< Updated upstream
-  const handleShowOtpForm = () => {
-    setShowOtpForm(true);
-  };
-=======
   const onSubmitEsqueciSenha = useCallback(
     async (data) => {
       try {
@@ -80,7 +51,7 @@ export function EsqueceuSenha() {
         console.error("Erro no onSubmitEsqueciSenha:", error);
       }
     },
-    [esqueceuSenhaRedefinir]
+    []
   );
 
   const onSubmitSenhatokenForm = useCallback(async () => {
@@ -92,7 +63,7 @@ export function EsqueceuSenha() {
     } catch (error) {
       console.error("Erro no onSubmitSenhatokenForm:", error);
     }
-  }, [setSenhatoken, setShowNewPasswordForm, getSenhatokenValue]);
+  }, [getSenhatokenValue]);
 
   const onSubmitSenhaForm = useCallback(
     async (formData) => {
@@ -111,12 +82,12 @@ export function EsqueceuSenha() {
         }
 
         // Obter o valor da senha usando getSenhaValue
-        const senha = getSenhaValue();
+        const senha = getSenhaValue().senha;
 
         const requestData = {
-          email: email,
+          email,
           senhatoken: token,
-          senha: senha.senha,
+          senha,
         };
 
         console.log("Dados combinados para enviar:", requestData);
@@ -128,7 +99,7 @@ export function EsqueceuSenha() {
         console.error("Erro no onSubmitSenhaForm:", error);
       }
     },
-    [senhatoken, getEmailValue, getSenhaValue, esqueceuSenhaAtualizar]
+    [senhatoken, getEmailValue, getSenhaValue]
   );
 
   useEffect(() => {
@@ -136,103 +107,20 @@ export function EsqueceuSenha() {
       setShowOtpForm(false);
     }
   }, [showNewPasswordForm]);
->>>>>>> Stashed changes
 
   return (
-    <>
-      <div>
-        <div
-          className={`bg-cinzaEscuro min-h-screen flex items-center justify-center ${
-            showOtpForm ? "blur-md" : ""
-          }`}
-        >
-          <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
-            <div className="text-center">
-              <div className="text-3xl text-amareloPastel">fincash</div>
-              <div className="text-5xl text-center text-quaseBranco">
-                Esqueceu sua senha
-              </div>
-            </div>
-
-            <form
-              onSubmit={handleSubmit(onSubmitEsqueciSenha)}
-              className="mt-8"
-            >
-              <h2 className="text-3xl text-quaseBranco my-4">
-                Endereço de email
-              </h2>
-
-              <Input
-                type="email"
-                placeholder=""
-                name="email"
-                register={register}
-              />
-              {errors.email && <span>{errors.email.message}</span>}
-
-              <button
-                className="bg-amareloPastel text-3xl font-bold font-mono my-4 w-full py-4 rounded-lg"
-                type="submit"
-                onClick={handleShowOtpForm}
-              >
-                Nova Senha
-              </button>
-            </form>
+    <div className="bg-cinzaEscuro min-h-screen flex items-center justify-center">
+      <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
+        <div className="text-center">
+          <div className="text-3xl text-amareloPastel">fincash</div>
+          <div className="text-5xl text-center text-quaseBranco">
+            Esqueceu sua senha
           </div>
         </div>
 
-<<<<<<< Updated upstream
-        {showOtpForm && (
-          <div
-            className={`absolute top-0 left-0 w-full h-full flex items-center justify-center transition duration-500 ease-in-out ${
-              showOtpForm ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <form className="form">
-              <div className="title">Token de Verificação</div>
-              <p className="message">
-                Por favor, insira o código que você recebeu no email
-              </p>
-              <div className="inputs">
-                <InputFormShow
-                  type="input"
-                  placeholder=""
-                  name="input"
-                  register={register}
-                />
-                <InputFormShow
-                  type="input"
-                  placeholder=""
-                  name="input"
-                  register={register}
-                />
-                <InputFormShow
-                  type="input"
-                  placeholder=""
-                  name="input"
-                  register={register}
-                />
-                <InputFormShow
-                  type="input"
-                  placeholder=""
-                  name="input"
-                  register={register}
-                />
-              </div>
-              <button className="action" type="submit">
-                Verificar
-              </button>
-            </form>
-          </div>
-=======
         {!showOtpForm && !showNewPasswordForm && (
-          <form
-            onSubmit={handleSubmitEmail(onSubmitEsqueciSenha)}
-            className="mt-8"
-          >
-            <h2 className="text-3xl text-quaseBranco my-4">
-              Endereço de email
-            </h2>
+          <form onSubmit={handleSubmitEmail(onSubmitEsqueciSenha)} className="mt-8">
+            <h2 className="text-3xl text-quaseBranco my-4">Endereço de email</h2>
 
             <Input
               type="email"
@@ -255,13 +143,8 @@ export function EsqueceuSenha() {
         )}
 
         {showOtpForm && !showNewPasswordForm && (
-          <form
-            onSubmit={handleSubmitSenhatoken(onSubmitSenhatokenForm)}
-            className="mt-8"
-          >
-            <div className="text-3xl text-quaseBranco my-4">
-              Token de Verificação
-            </div>
+          <form onSubmit={handleSubmitSenhatoken(onSubmitSenhatokenForm)} className="mt-8">
+            <div className="text-3xl text-quaseBranco my-4">Token de Verificação</div>
 
             <Input
               type="text"
@@ -283,14 +166,10 @@ export function EsqueceuSenha() {
               Verificar
             </button>
           </form>
->>>>>>> Stashed changes
         )}
 
         {showNewPasswordForm && (
-          <form
-            onSubmit={handleSubmitSenha(onSubmitSenhaForm)}
-            className="mt-8"
-          >
+          <form onSubmit={handleSubmitSenha(onSubmitSenhaForm)} className="mt-8">
             <div className="text-3xl text-quaseBranco my-4">Nova Senha</div>
 
             <Input
@@ -313,6 +192,6 @@ export function EsqueceuSenha() {
           </form>
         )}
       </div>
-    </>
+    </div>
   );
 }

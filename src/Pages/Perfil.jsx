@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { HeaderHome } from "../header/header.jsx";
 import { UsuarioLogado } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
-import { UserContext } from "../Context/usuarioContext.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function Perfil() {
   const [user, setUsuario] = useState({});
 
@@ -67,11 +66,6 @@ export default function Perfil() {
             </div>
           </div>
 
-<<<<<<< Updated upstream
-          <div className="flex justify-between mt-20 w-full">
-            <button
-              className="bg-azulclaro text-3xl font-bold font-mono px-9 my-4 mr-3 text-quaseBranco py-4 rounded-lg"
-=======
           <div className="grid grid-cols-3 gap-2">
             <Link to="/home">
               <button
@@ -84,7 +78,6 @@ export default function Perfil() {
 
             <button
               className="bg-azulclaro text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
->>>>>>> Stashed changes
               type="submit"
             >
               Editar
