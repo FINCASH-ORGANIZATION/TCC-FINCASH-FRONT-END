@@ -11,7 +11,9 @@ export default function NavigationBar() {
       </button>
 
       <button className="button">
+        <Link to="/Contas">
         <img src="../src/Image/bank.png" alt="" className="icon" />
+        </Link>
       </button>
 
       <button className="button">
@@ -21,11 +23,15 @@ export default function NavigationBar() {
       </button>
 
       <button className="button">
+        <Link to="/Transacao">
         <img src="../src/Image/transition.png" alt="" className="icon" />
+        </Link>
       </button>
 
       <button className="button">
+        <Link to="/Perfil">
         <img src="../src/Image/perfil.png" alt="" className="icon" />
+        </Link>
       </button>
     </div>
   );

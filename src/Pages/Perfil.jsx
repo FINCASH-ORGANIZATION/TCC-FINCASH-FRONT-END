@@ -3,6 +3,7 @@ import { HeaderHome } from "../header/header.jsx";
 import { UsuarioLogado } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+
 export default function Perfil() {
   const [user, setUsuario] = useState({});
 
@@ -78,6 +79,7 @@ export default function Perfil() {
 
             <button
               className="bg-azulclaro text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
+
               type="submit"
             >
               Editar

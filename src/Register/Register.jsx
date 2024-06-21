@@ -33,15 +33,15 @@ export function Register() {
         <div className="bg-cinzaEscuro min-h-screen flex items-center justify-center">
           <div className="w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
             <div className="text-center">
-              <div className="text-3xl text-amareloPastel">fincash</div>
-              <div className="text-5xl mb-8 text-center text-quaseBranco">
+              <div className="text-6xl text-amareloPastel">fincash</div>
+              <div className="text-8xl mb-8 text-center text-quaseBranco">
                 Faça seu cadastro
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <h2 className="text-3xl text-quaseBranco my-2">Nome</h2>
+                <h2 className="text-6xl text-quaseBranco my-5">Nome</h2>
 
                 <Input
                   type="nome"
@@ -54,7 +54,7 @@ export function Register() {
                 {errors.nome && <span>{errors.nome.message}</span>}
               </div>
               <div>
-                <h2 className="text-3xl text-quaseBranco my-2">Sobrenome</h2>
+                <h2 className="text-6xl text-quaseBranco my-5">Sobrenome</h2>
 
                 <Input
                   type="sobrenome"
@@ -68,7 +68,7 @@ export function Register() {
               </div>
 
               <div className="col-span-2">
-                <h2 className="text-3xl text-quaseBranco my-2">
+                <h2 className="text-6xl text-quaseBranco my-5">
                   Endereço de email
                 </h2>
 
@@ -86,7 +86,7 @@ export function Register() {
               </div>
 
               <div>
-                <h2 className="text-3xl text-quaseBranco my-2">Senha</h2>
+                <h2 className="text-6xl text-quaseBranco my-5">Senha</h2>
 
                 <Input
                   type="senha"
@@ -97,7 +97,7 @@ export function Register() {
                 ></Input>
               </div>
               <div>
-                <h2 className="text-3xl text-quaseBranco my-2">
+                <h2 className="text-6xl text-quaseBranco my-5">
                   Repita a senha
                 </h2>
 
@@ -112,19 +112,19 @@ export function Register() {
             </div>
 
             <button
-              className="bg-amareloPastel text-3xl font-bold font-mono my-4 w-full py-4 rounded-lg"
+              className="bg-amareloPastel text-6xl font-bold font-mono my-4 mt-10 w-full py-10 rounded-xl shadow-xl shadow-black"
               type="submit"
             >
               Conecte-se
             </button>
 
             <div className="flex flex-row justify-center mt-2">
-              <h2 className="font-normal text-3xl text-quaseBranco">
+              <h2 className="font-normal text-6xl text-quaseBranco">
                 Já tem cadastro?
               </h2>
               <Link
                 to={"/Login"}
-                className="ml-2 text-3xl text-azulClaro hover:underline"
+                className="ml-2 text-6xl text-azulClaro hover:underline"
               >
                 Login
               </Link>

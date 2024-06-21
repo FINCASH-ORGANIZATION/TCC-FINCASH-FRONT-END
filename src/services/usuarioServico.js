@@ -36,6 +36,7 @@ export async function UsuarioLogado() {
   }
 }
 
+
 export async function esqueceuSenhaRedefinir(data) {
   try {
     const response = axios.post(`${baseURL}/senha/redefinir`, data);
@@ -59,3 +60,4 @@ export async function esqueceuSenhaAtualizar(requestData) {
     throw error;
   }
 }
+

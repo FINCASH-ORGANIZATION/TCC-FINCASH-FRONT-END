@@ -9,12 +9,10 @@ import {
   esqueceuSenhaRedefinir,
 } from "../services/usuarioServico";
 
-export function EsqueceuSenha() {
-  const [showOtpForm, setShowOtpForm] = useState(false);
-  const [showNewPasswordForm, setShowNewPasswordForm] = useState(false);
-  const [senhatoken, setSenhatoken] = useState("");
 
+export function EsqueceuSenha() {
   const {
+
     register: registerEmail,
     handleSubmit: handleSubmitEmail,
     formState: { errors: errorsEmail },
