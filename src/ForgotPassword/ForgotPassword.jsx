@@ -1,18 +1,20 @@
-import { EsqueceuSenhaSchema } from "../Schema/esqueceuSenhaSchema.js";
+import { useState, useEffect, useCallback } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState, useEffect, useCallback } from "react";
 import { Input } from "../input/input.jsx";
 import "./ForgotPassword.css";
 import {
   esqueceuSenhaAtualizar,
   esqueceuSenhaRedefinir,
 } from "../services/usuarioServico";
-
+import { EsqueceuSenhaSchema } from "../Schema/esqueceuSenhaSchema.js";
 
 export function EsqueceuSenha() {
-  const {
+  const [senhatoken, setSenhatoken] = useState('');
+  const [showOtpForm, setShowOtpForm] = useState(false);
+  const [showNewPasswordForm, setShowNewPasswordForm] = useState(false);
 
+  const {
     register: registerEmail,
     handleSubmit: handleSubmitEmail,
     formState: { errors: errorsEmail },
