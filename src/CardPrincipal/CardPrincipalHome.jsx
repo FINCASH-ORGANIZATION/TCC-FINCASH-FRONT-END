@@ -64,7 +64,15 @@ export default function CardPrincipalHome() {
                           <button className="rounded-xl bg-red-500 px-5 py-1 mt-8">Deletar</button>
                       </tr>
                   </tbody>
-              </table>
+                  <tfoot>
+        </tfoot>
+    </table>
+    <div class="flex justify-end items-center mt-4 bg-zinc-800">
+        <span className="text-white text-5xl mr-5">Adicionar</span>
+        <button className="bg-green-600 text-5xl text-white p-5 rounded-xl">Receita</button>
+        <span className="text-white text-5xl mx-5">ou</span>
+        <button className="bg-red-600 text-5xl text-white p-5 my-5 mr-10 rounded-xl">Despesas</button>
+          </div>
           </div>
       </div>
   </div>

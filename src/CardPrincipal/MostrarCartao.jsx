@@ -13,6 +13,7 @@ export default function MostrarCartao() {
                   <div className="card bg-white w-10/12 p-5 shadow-2xl rounded-3xl shadow-black flex flex-col">
                     <div className="flex justify-between items-center">
                       <span className="text-5xl">Cartão 1</span>
+                      <button className="bg-azulclaro px-10 text-5xl text-white py-5 rounded-2xl">Editar</button>
                       <button className="bg-red-500 px-10 text-5xl text-white py-5 rounded-2xl">Deletar</button>
                     </div>
                     <img src="../src/Image/bb.png" alt="" className="w-28 h-28" />
@@ -28,6 +29,7 @@ export default function MostrarCartao() {
                   <div className="card bg-white w-10/12 p-5 shadow-2xl rounded-3xl shadow-black flex flex-col">
                     <div className="flex justify-between items-center">
                       <span className="text-5xl">Cartão 2</span>
+                      <button className="bg-azulclaro px-10 text-5xl text-white py-5 rounded-2xl">Editar</button>
                       <button className="bg-red-500 px-10 text-5xl text-white py-5 rounded-2xl">Deletar</button>
                     </div>
                     <img src="../src/Image/nubank.png" alt="" className="w-28 h-28" />
@@ -43,6 +45,7 @@ export default function MostrarCartao() {
                   <div className="card bg-white w-10/12 p-5 shadow-2xl rounded-3xl shadow-black flex flex-col">
                     <div className="flex justify-between items-center">
                       <span className="text-5xl">Cartão 3</span>
+                      <button className="bg-azulclaro px-10 text-5xl text-white py-5 rounded-2xl">Editar</button>
                       <button className="bg-red-500 px-10 text-5xl text-white py-5 rounded-2xl">Deletar</button>
                     </div>
                     <img src="../src/Image/bradesco.png" alt="" className="w-28 h-28" />
@@ -58,6 +61,7 @@ export default function MostrarCartao() {
                   <div className="card bg-white w-10/12 p-5 shadow-2xl rounded-3xl shadow-black flex flex-col">
                     <div className="flex justify-between items-center">
                       <span className="text-5xl">Cortão 4</span>
+                      <button className="bg-azulclaro px-10 text-5xl text-white py-5 rounded-2xl">Editar</button>
                       <button className="bg-red-500 px-10 text-5xl text-white py-5 rounded-2xl">Deletar</button>
                     </div>
                     <img src="../src/Image/santander.png" alt="" className="w-28 h-28" />
@@ -73,6 +77,7 @@ export default function MostrarCartao() {
                   <div className="card bg-white w-10/12 p-5 shadow-2xl rounded-3xl shadow-black flex flex-col">
                     <div className="flex justify-between items-center">
                       <span className="text-5xl">Cartão 5</span>
+                      <button className="bg-azulclaro px-10 text-5xl text-white py-5 rounded-2xl">Editar</button>
                       <button className="bg-red-500 px-10 text-5xl text-white py-5 rounded-2xl">Deletar</button>
                     </div>
                     <img src="../src/Image/intermedium.png" alt="" className="w-28 h-28" />
@@ -88,6 +93,7 @@ export default function MostrarCartao() {
                   <div className="card bg-white w-10/12 p-5 shadow-2xl rounded-3xl shadow-black flex flex-col">
                     <div className="flex justify-between items-center">
                       <span className="text-5xl">Cartão 6</span>
+                      <button className="bg-azulclaro px-10 text-5xl text-white py-5 rounded-2xl">Editar</button>
                       <button className="bg-red-500 px-10 text-5xl text-white py-5 rounded-2xl">Deletar</button>
                     </div>
                     <img src="../src/Image/caixa.png" alt="" className="w-28 h-28" />

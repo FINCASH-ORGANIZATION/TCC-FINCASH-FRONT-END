@@ -40,8 +40,7 @@ export function HeaderHome() {
           <span className="text-8xl">fincash</span>
         </div>
 
-        <a className="pr-16 text-6xl text-white">Sobre os criadores</a>
-        <a className="pr-10 text-6xl text-white">Contato</a>
+        <span className="pr-10 text-6xl text-white">Nome do usuario</span>
 
         {user ? (
           <p>{user.nome}</p>
