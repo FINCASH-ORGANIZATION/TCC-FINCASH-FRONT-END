@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HeaderHome } from "../header/header.jsx";
 import { UsuarioLogado } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 export default function Perfil() {
   const [user, setUsuario] = useState({});
@@ -66,9 +67,19 @@ export default function Perfil() {
             </div>
           </div>
 
-          <div className="flex justify-between mt-20 w-full">
+          <div className="grid grid-cols-3 gap-2">
+            <Link to="/home">
+              <button
+                className="bg-green-600 text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
+                type="submit"
+              >
+                Voltar
+              </button>
+            </Link>
+
             <button
-              className="bg-azulclaro text-3xl font-bold font-mono px-9 my-4 mr-3 text-quaseBranco py-4 rounded-lg"
+              className="bg-azulclaro text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
+
               type="submit"
             >
               Editar

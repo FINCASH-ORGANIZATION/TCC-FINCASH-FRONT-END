@@ -35,3 +35,29 @@ export async function UsuarioLogado() {
     throw error;
   }
 }
+
+
+export async function esqueceuSenhaRedefinir(data) {
+  try {
+    const response = axios.post(`${baseURL}/senha/redefinir`, data);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao resetar a senha:", error);
+    throw error;
+  }
+}
+
+export async function esqueceuSenhaAtualizar(requestData) {
+  try {
+    const response = await axios.post(
+      `${baseURL}/senha/atualizar`,
+      requestData
+    );
+    return response.requestData; // Corrigido para retornar response.data
+  } catch (error) {
+    console.error("Erro ao resetar a senha:", error);
+    throw error;
+  }
+}
+
