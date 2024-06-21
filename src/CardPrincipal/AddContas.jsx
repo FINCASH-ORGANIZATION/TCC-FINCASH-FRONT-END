@@ -1,5 +1,3 @@
-import "../CardPrincipal/CardCartaoStyled.css";
-
 export default function AddContas() {
   return (
     <div className="flex flex-col justify-center items-center">
