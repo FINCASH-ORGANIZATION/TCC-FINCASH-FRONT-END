@@ -1,7 +1,4 @@
-import CardContas from "../CardPrincipal/cardContas.jsx";
-import AddContas from "../CardPrincipal/AddContas.jsx";
 import MostrarContas from "../CardPrincipal/MostrarContas.jsx";
-import CardAddContas from "..//CardPrincipal/CardAddContas.jsx"
 import { HeaderHome } from "../header/header.jsx";
 import NavigationBar from "../NavBar/NavBar.jsx";
 

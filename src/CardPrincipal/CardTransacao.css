@@ -1,15 +1,15 @@
 @media (max-height: 1080px) {
-    .Bottom {
-        margin-top: 5px;
-        margin-bottom: 0px;
-        transition: all;
-    }
+  .Bottom {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    transition: all;
+  }
 }
 @media (max-height: 820px) {
-    .Bottom {
-        margin-top: 0px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .Bottom {
+    margin-top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

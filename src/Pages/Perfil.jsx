@@ -7,15 +7,19 @@ import { Link } from "react-router-dom";
 export default function Perfil() {
   const [user, setUsuario] = useState({});
 
-  useEffect(() => {
-    async function pesUsuarioLogado() {
-      try {
-        const response = await UsuarioLogado();
-        setUsuario(response.data.usuario);
-      } catch (error) {
-        console.log(error);
-      }
+  async function pesUsuarioLogado() {
+    try {
+      const response = await UsuarioLogado();
+      setUsuario(response.data.usuario);
+    } catch (error) {
+      console.log(error);
     }
+  }
+
+  
+
+  useEffect(() => {
+    pesUsuarioLogado();
 
     if (Cookies.get("token")) {
       pesUsuarioLogado();
@@ -79,7 +83,6 @@ export default function Perfil() {
 
             <button
               className="bg-azulclaro text-3xl font-bold font-mono px-5 my-4 text-quaseBranco py-4 rounded-lg"
-
               type="submit"
             >
               Editar

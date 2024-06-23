@@ -36,7 +36,6 @@ export async function UsuarioLogado() {
   }
 }
 
-
 export async function esqueceuSenhaRedefinir(data) {
   try {
     const response = axios.post(`${baseURL}/senha/redefinir`, data);
@@ -54,10 +53,37 @@ export async function esqueceuSenhaAtualizar(requestData) {
       `${baseURL}/senha/atualizar`,
       requestData
     );
-    return response.requestData; // Corrigido para retornar response.data
+    return response.requestData;
   } catch (error) {
     console.error("Erro ao resetar a senha:", error);
     throw error;
   }
 }
 
+export async function pesqDescricaoTransacao(data) {
+  try {
+    const response = await axios.get(`${baseURL}/transacao/pesquisarId/`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+      params: data,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar transação:", error);
+  }
+}
+
+export async function puxarTransacaoUsuario() {
+  try {
+    const response = await axios.get(`${baseURL}/transacao/pesUsuarioRota/`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar transação:", error);
+  }
+}

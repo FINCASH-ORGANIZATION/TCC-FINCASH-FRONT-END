@@ -11,7 +11,8 @@ import Cartoes from "./Pages/Cartoes.jsx";
 import Contas from "./Pages/Contas.jsx";
 import Transacao from "./Pages/Transacao.jsx";
 import Perfil from "./Pages/Perfil.jsx";
-import UserProvider from "./Context/usuarioContext.jsx";
+import { UserProvider } from "./Context/usuarioContext.jsx";
+import { TransacaoProvider } from "./Context/transacaoContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
-      <RouterProvider router={router} />
+      <TransacaoProvider>
+        <RouterProvider router={router} />
+      </TransacaoProvider>
     </UserProvider>
   </React.StrictMode>
 );
