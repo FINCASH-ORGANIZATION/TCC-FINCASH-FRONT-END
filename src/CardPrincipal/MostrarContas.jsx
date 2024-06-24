@@ -54,7 +54,7 @@ export default function MostrarContas() {
   if (contas.length === 0) {
     return (
       <div className="flex flex-col items-center mt-10">
-        <p className="text-3xl text-white mb-5">
+        <p className="text-3xl text-white mb-5 text-7xl">
           Você ainda não cadastrou suas contas.
         </p>
       </div>

@@ -182,8 +182,8 @@ const MostrarCartao = () => {
           disabled={paginaAtual === 1}
           className={`text-4xl px-5 py-2 rounded-xl ${
             paginaAtual === 1
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 text-white"
+              ? "bg-gray-400 cursor-not-allowed text-6xl"
+              : "bg-blue-500 text-white text-6xl"
           }`}
         >
           Anterior
@@ -193,8 +193,8 @@ const MostrarCartao = () => {
           disabled={indiceUltimoCartao >= cartoes.length}
           className={`text-4xl px-5 py-2 rounded-xl ${
             indiceUltimoCartao >= cartoes.length
-              ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 text-white"
+              ? "bg-gray-400 cursor-not-allowed text-6xl"
+              : "bg-blue-500 text-white text-6xl"
           }`}
         >
           Próxima
@@ -205,7 +205,7 @@ const MostrarCartao = () => {
       {cartaoParaDeletar && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-2xl">
-            <h2 className="text-3xl mb-4">
+            <h2 className="text-5xl mb-4">
               Tem certeza que deseja deletar este cartão?
             </h2>
             <div className="flex space-x-4">

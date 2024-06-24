@@ -57,16 +57,25 @@ export default function CardPrincipalHome() {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="bg-gray-800 text-left text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-white">
-                    <th className="px-4 py-4 sm:px-6 sm:py-6">Data</th>
-                    <th className="px-4 py-4 sm:px-6 sm:py-6">Descrição</th>
-                    <th className="px-4 py-4 sm:px-6 sm:py-6">Categoria</th>
-                    <th className="px-4 py-4 sm:px-6 sm:py-6">Valor</th>
+                    <th className="px-4 py-4 sm:px-6 sm:py-6 text-6xl">Data</th>
+                    <th className="px-4 py-4 sm:px-6 sm:py-6 text-6xl">
+                      Descrição
+                    </th>
+                    <th className="px-4 py-4 sm:px-6 sm:py-6 text-6xl">
+                      Categoria
+                    </th>
+                    <th className="px-4 py-4 sm:px-6 sm:py-6 text-6xl">
+                      Valor
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white text-gray-900">
                   {dados.length === 0 ? (
                     <tr>
-                      <td className="px-4 py-4 text-center" colSpan="4">
+                      <td
+                        className="px-4 py-4 text-center text-6xl"
+                        colSpan="4"
+                      >
                         O usuário ainda não cadastrou nenhuma despesa nem
                         receita.
                       </td>
@@ -104,14 +113,14 @@ export default function CardPrincipalHome() {
               <div className="flex justify-between mt-4">
                 <button
                   onClick={() => setOffset(Math.max(offset - 5, 0))}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                  className="bg-blue-500 text-white p-5 text-5xl rounded-lg hover:bg-blue-600"
                   disabled={offset === 0}
                 >
                   Voltar
                 </button>
                 <button
                   onClick={() => setOffset(offset + 5)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+                  className="bg-blue-500 text-white p-5 text-5xl rounded-lg hover:bg-blue-600"
                   disabled={offset + 5 >= dados.length}
                 >
                   Próximo

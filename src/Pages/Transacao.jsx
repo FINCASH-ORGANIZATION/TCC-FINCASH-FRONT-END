@@ -42,10 +42,17 @@ export default function Cartoes() {
     setValue("categoria", event.target.value);
   };
 
+  // Opções para o campo "tipoTransacao"
+  const tipoTransacao = ["Receita", "Despesa"];
+
+  const handleTransacaoChange = (event) => {
+    setValue("tipoTransacao", event.target.value);
+  };
+
   return (
     <>
       <HeaderHome />
-      <div className="bg-gray-900 w-screen h-screen font-mono flex justify-center items-center">
+      <div className="bg-cinzaEscuro w-screen h-screen font-mono flex justify-center items-center">
         {!showCardTransacao && !showFormulario && (
           <div className="flex flex-col md:flex-row mt-10 space-y-10 md:space-y-0 md:space-x-10">
             <div className="flex flex-col justify-center items-center">
@@ -59,7 +66,7 @@ export default function Cartoes() {
                     alt=""
                     className="w-20 md:w-44"
                   />
-                  <span className="text-2xl md:text-8xl text-black">
+                  <span className="text-7xl md:text-8xl text-black">
                     Criar Transação
                   </span>
                 </button>
@@ -76,7 +83,7 @@ export default function Cartoes() {
                     alt=""
                     className="w-20 md:w-44"
                   />
-                  <span className="text-2xl md:text-8xl text-black">
+                  <span className="text-7xl md:text-8xl text-black">
                     Ver Transações
                   </span>
                 </button>
@@ -86,10 +93,11 @@ export default function Cartoes() {
         )}
         {showCardTransacao && <CardTransacao />}
         {showFormulario && (
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
-            <h2 className="text-2xl md:text-4xl mb-4 text-white">
-              Criar Transação
-            </h2>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="mt-10 bg-cinzaClaro1 p-16 rounded-3xl shadow-2xl shadow-black"
+          >
+            <h2 className="text-7xl mb-4 text-white">Criar Transação</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
                 type="number"
@@ -113,15 +121,20 @@ export default function Cartoes() {
                 className="inputForm"
               />
               <div className="inputForm">
-                <label htmlFor="categoria" className="text-white">
-                  Categoria
-                </label>F
                 <select
                   id="categoria"
                   name="categoria"
                   onChange={handleCategoriaChange}
                   defaultValue="" // Valor inicial vazio
-                  className="block w-full mt-1 px-3 py-2 rounded-md bg-white border border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                  className="block mt-1 px-3 py-2 rounded-md bg-white border border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                  style={{
+                    width: "100%",
+                    height: "7rem",
+                    paddingLeft: "4px",
+                    borderRadius: "15px",
+                    fontFamily: "monospace",
+                    fontSize: "60px",
+                  }}
                 >
                   <option value="" disabled hidden>
                     Selecione uma categoria
@@ -133,13 +146,30 @@ export default function Cartoes() {
                   ))}
                 </select>
               </div>
-              <Input
-                type="text"
-                placeholder="Tipo de Transação"
+              <select
+                id="tipoTransacao"
                 name="tipoTransacao"
-                register={register}
-                className="inputForm"
-              />
+                onChange={handleTransacaoChange}
+                defaultValue="" // Valor inicial vazio
+                className="block mt-1 px-3 py-2 rounded-md bg-white border border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                style={{
+                  width: "100%",
+                  height: "7rem",
+                  paddingLeft: "4px",
+                  borderRadius: "15px",
+                  fontFamily: "monospace",
+                  fontSize: "60px",
+                }}
+              >
+                <option value="" disabled hidden>
+                  Tipo da transação
+                </option>
+                {tipoTransacao.map((tipoTransacao) => (
+                  <option key={tipoTransacao} value={tipoTransacao}>
+                    {tipoTransacao}
+                  </option>
+                ))}
+              </select>
               <Input
                 type="text"
                 placeholder="Conta"
@@ -150,7 +180,7 @@ export default function Cartoes() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4"
+              className="bg-blue-500 text-white text-7xl p-5 rounded-2xl hover:bg-blue-600 mt-4"
             >
               Criar
             </button>
