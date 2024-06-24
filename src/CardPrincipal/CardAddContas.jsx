@@ -1,3 +1,5 @@
+import { Input } from "../input/input";
+
 export default function CardAddContas() {
   return (
     <div className="flex flex-col justify-center items-center">
@@ -9,10 +11,12 @@ export default function CardAddContas() {
           <span className="text-6xl">Banco do Brasil</span>
           <img src="../src/Image/seta1.png" alt="" className="w-10" />
         </button>
-        <input
-          type=""
+        <Input
+          type="string"
+          name={"conta"}
           className="text-8xl placeholder:text-teal-600 border-b-4 border-gray-500 rounded-none"
           placeholder="R$0,00"
+          register={register}
         />
         <br />
         <input className="input" type="text" placeholder="Descrição"></input>

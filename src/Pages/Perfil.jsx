@@ -3,9 +3,12 @@ import { HeaderHome } from "../header/header.jsx";
 import { UsuarioLogado } from "../services/usuarioServico.js";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Perfil() {
-  const [user, setUsuario] = useState({});
+  const navigate = useNavigate();
+
+  const [user, setUsuario] = useState(null); // Inicializado como null para evitar erros iniciais
 
   async function pesUsuarioLogado() {
     try {
@@ -16,11 +19,7 @@ export default function Perfil() {
     }
   }
 
-  
-
   useEffect(() => {
-    pesUsuarioLogado();
-
     if (Cookies.get("token")) {
       pesUsuarioLogado();
     }
@@ -28,7 +27,8 @@ export default function Perfil() {
 
   function Deslogar() {
     Cookies.remove("token");
-    setUsuario(undefined);
+    setUsuario(null); // Reinicializa user para evitar acessos após deslogar
+    navigate("/");
   }
 
   return (
@@ -39,7 +39,7 @@ export default function Perfil() {
           <img src="" alt="" />
 
           <button className="transition-all rounded-full bg-amareloPastel px-3 py-3 font-medium text-black hover:bg-amber-300">
-            {user.avatar ? (
+            {user && user.avatar ? (
               <img src={user.avatar} alt="" className="w-24 h-24" />
             ) : (
               <img
@@ -54,10 +54,7 @@ export default function Perfil() {
             <div className="text-center col-span-2">
               <h2 className="text-3xl text-quaseBranco my-2">Nome</h2>
               <h3 className="text-3xl text-cinzaClaro2">
-                <p>
-                  {user.nome}
-                  {user.sobrenome}
-                </p>
+                <p>{user && `${user.nome} ${user.sobrenome}`}</p>
               </h3>
             </div>
 
@@ -66,7 +63,7 @@ export default function Perfil() {
                 Endereço de email
               </h2>
               <h3 className="text-3xl text-cinzaClaro2">
-                <p>{user.email}</p>
+                <p>{user && user.email}</p>
               </h3>
             </div>
           </div>

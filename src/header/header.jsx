@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import Cookies from "js-cookie";
 import {
   UsuarioLogado,
-  puxarTransacaoUsuario,
 } from "../services/usuarioServico";
+import { puxarTransacaoUsuario} from "../services/transacaoServico"
 import { Link } from "react-router-dom";
 import { UserContext } from "../Context/usuarioContext";
 import { TransacaoContext } from "../Context/transacaoContext";

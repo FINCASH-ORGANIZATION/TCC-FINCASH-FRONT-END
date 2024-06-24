@@ -3,7 +3,7 @@ import { InputPes } from "../input/inputFormShow";
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { TransacaoContext } from "../Context/transacaoContext";
-import { pesqDescricaoTransacao } from "../services/usuarioServico";
+import { pesqDescricaoTransacao } from "../services/transacaoServico";
 
 export function CardTransacao() {
   const { transacao, setTransacao } = useContext(TransacaoContext);
@@ -23,7 +23,7 @@ export function CardTransacao() {
       console.log("Enviando termo de pesquisa ao backend:", termo);
       const response = await pesqDescricaoTransacao({ descricao: termo });
       console.log("Resposta do backend:", response);
-  
+
       if (response && response.results && response.results.length > 0) {
         setTransacao(response.results);
       } else {

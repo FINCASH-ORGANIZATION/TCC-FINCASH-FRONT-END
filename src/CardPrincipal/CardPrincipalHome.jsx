@@ -3,6 +3,7 @@ import { TransacaoContext } from "../Context/transacaoContext";
 
 export default function CardPrincipalHome() {
   const { transacao } = useContext(TransacaoContext);
+//  const { receita, setReceita} = useEffect(() => {})
 
   useEffect(() => {}, [transacao]);
 
