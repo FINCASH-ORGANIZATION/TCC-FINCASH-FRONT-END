@@ -115,7 +115,7 @@ export default function Cartoes() {
               <div className="inputForm">
                 <label htmlFor="categoria" className="text-white">
                   Categoria
-                </label>
+                </label>F
                 <select
                   id="categoria"
                   name="categoria"

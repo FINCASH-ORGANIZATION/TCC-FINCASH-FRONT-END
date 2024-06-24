@@ -16,7 +16,10 @@ export default function CardPrincipalHome() {
           ? responseReceitas.results.map((item) => ({ ...item, receita: true }))
           : [];
         const despesas = Array.isArray(responseDespesas.results)
-          ? responseDespesas.results.map((item) => ({ ...item, receita: false }))
+          ? responseDespesas.results.map((item) => ({
+              ...item,
+              receita: false,
+            }))
           : [];
 
         const dadosCombinados = [...receitas, ...despesas].sort(
@@ -82,7 +85,11 @@ export default function CardPrincipalHome() {
                         </td>
                         <td className="px-4 py-4">{item.categoria}</td>
                         <td className="px-4 py-4">
-                          <span className={item.receita ? "text-green-600" : "text-red-600"}>
+                          <span
+                            className={
+                              item.receita ? "text-green-600" : "text-red-600"
+                            }
+                          >
                             {item.receita ? "+" : "-"}{" "}
                             <span className={carregando ? "animate-pulse" : ""}>
                               {formatarValor(Math.abs(item.valor))}

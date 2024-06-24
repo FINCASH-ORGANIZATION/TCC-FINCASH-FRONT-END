@@ -3,23 +3,40 @@ import "../Card/CardHomeStyled.css";
 import { exibirSaldo } from "../services/saldoServico.js"; // Importe o serviço correto conforme o caminho do seu projeto
 
 export function CardHome() {
-  const [saldo, setSaldo] = useState(0); // Inicializando com 0 enquanto aguarda a resposta da API
+  const [saldo, setSaldo] = useState(0);
+  const [transacoes, setTransacoes] = useState([]);
 
   useEffect(() => {
-    // Função para buscar o saldo do usuário
-    async function fetchSaldo() {
+    async function fetchDadosFinanceiros() {
       try {
-        const response = await exibirSaldo(); // Chama a função do serviço para buscar o saldo
+        const response = await exibirSaldo(); // Suponha que exibirSaldo retorne um objeto com saldo, receitas e despesas
         console.log(response); // Verifica a resposta no console para depuração
-        setSaldo(response); // Define o saldo no estado
+
+        setSaldo(response.saldo);
+
+        // Misturar receitas e despesas em uma única lista
+        const todasTransacoes = [...response.receitas, ...response.despesas];
+
+        // Embaralhar a ordem das transações
+        const transacoesEmbaralhadas = shuffleArray(todasTransacoes);
+
+        setTransacoes(transacoesEmbaralhadas);
       } catch (error) {
-        console.error("Erro ao buscar saldo do usuário:", error);
+        console.error("Erro ao buscar dados financeiros:", error);
       }
     }
 
-    // Chama a função para buscar o saldo assim que o componente for montado
-    fetchSaldo();
-  }, []); // O array vazio assegura que useEffect será executado apenas uma vez, equivalente ao componentDidMount()
+    fetchDadosFinanceiros();
+  }, []);
+
+  // Função para embaralhar array (utilizando algoritmo Fisher-Yates)
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
 
   return (
     <>
@@ -34,20 +51,31 @@ export function CardHome() {
           </div>
           <img src="../src/Image/saldo.png" alt="" className="w-28 h-28" />
         </div>
-        <div className="bg-cinzaClaro2 flex justify-between w-2/12 h-1/6 m-8 p-3 rounded-3xl shadow-2xl shadow-black">
-          <div className="flex flex-col justify-between">
-            <h1 className="text-white text-7xl">Receita</h1>
-            <span className="text-white text-8xl">R$ 0,00</span>
+
+        {/* Renderização dinâmica de todas as transações misturadas */}
+        {transacoes.map((transacao, index) => (
+          <div
+            key={index}
+            className="bg-cinzaClaro2 flex justify-between w-2/12 h-1/6 m-8 p-3 rounded-3xl shadow-2xl shadow-black"
+          >
+            <div className="flex flex-col justify-between">
+              <h1 className="text-white text-7xl">
+                {transacao.tipo === "receita" ? "Receita" : "Despesa"}
+              </h1>
+              <span className="text-white text-8xl">
+                R$ {transacao.valor.toFixed(2)}
+              </span>
+            </div>
+            <img
+              src={`../src/Image/${
+                transacao.tipo === "receita" ? "receita.png" : "despesa.png"
+              }`}
+              alt=""
+              className="w-28 h-28"
+            />
           </div>
-          <img src="../src/Image/receita.png" alt="" className="w-28 h-28" />
-        </div>
-        <div className="bg-cinzaClaro2 flex justify-between w-2/12 h-1/6 m-8 p-3 rounded-3xl shadow-2xl shadow-black">
-          <div className="flex flex-col justify-between">
-            <h1 className="text-white text-7xl">Despesa</h1>
-            <span className="text-white text-8xl">R$ 0,00</span>
-          </div>
-          <img src="../src/Image/despesa.png" alt="" className="w-28 h-28" />
-        </div>
+        ))}
+
         <div className="bg-cinzaClaro2 flex justify-between w-2/12 h-1/6 m-8 p-3 rounded-3xl shadow-2xl shadow-black">
           <div className="flex flex-col justify-between">
             <h1 className="text-white text-7xl">Cartões</h1>

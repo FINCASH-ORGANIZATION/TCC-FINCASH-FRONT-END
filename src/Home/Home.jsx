@@ -3,7 +3,6 @@ import { HeaderHome } from "../header/header.jsx";
 import NavigationBar from "../NavBar/NavBar.jsx";
 import CardPrincipalHome from "../CardPrincipal/CardPrincipalHome.jsx";
 import { useEffect } from "react";
-//import Cookies from "js-cookie";
 
 export function Home() {
   useEffect(() => {
