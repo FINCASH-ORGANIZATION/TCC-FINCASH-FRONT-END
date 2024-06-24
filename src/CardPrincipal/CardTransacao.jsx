@@ -1,4 +1,3 @@
-import "../CardPrincipal/CardTransacao.css";
 import { InputPes } from "../input/inputFormShow";
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -35,26 +34,42 @@ export function CardTransacao() {
     }
   };
 
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(value);
+  };
+
+  const formatDate = (dateString) => {
+    const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+    return new Intl.DateTimeFormat("pt-BR", options).format(
+      new Date(dateString)
+    );
+  };
+
   return (
-    <div className="w-11/12 h-6/12 absolute mt-40 flex flex-col justify-center">
-      <div className="bg-cinzaClaro2 w-full h-6/12 p-10 shadow-2xl shadow-black flex items-center rounded-3xl">
-        <div className="left w-full h-full">
-          <span className="text-8xl text-cinzaClaro5">Transações</span>
+    <div className="w-11/12 lg:w-8/12 xl:w-6/12 mx-auto mt-20 flex flex-col justify-center">
+      <div className="bg-cinzaClaro2 w-full p-8 shadow-2xl shadow-black flex flex-col lg:flex-row items-center rounded-3xl transition-transform duration-500 transform hover:scale-105">
+        <div className="left w-full lg:w-1/2 mb-4 lg:mb-0">
+          <span className="text-3xl md:text-5xl lg:text-6xl xl:text-8xl text-cinzaClaro5">
+            Transações
+          </span>
         </div>
 
-        <div className="right w-full flex justify-end">
-          <div className="flex">
+        <div className="right w-full lg:w-1/2 flex justify-end">
+          <div className="flex w-full lg:w-auto">
             <InputPes
               type="text"
               name={"descricao"}
               placeholder="Pesquise por descrição, valor ou categoria"
               value={descricao}
               onChange={(e) => setDescricao(e.target.value)}
-              className="border border-gray-400 rounded-l px-4 py-2"
+              className="border border-gray-400 rounded-l px-4 py-2 w-full lg:w-auto"
             />
             <button
               onClick={handleSearch}
-              className="bg-blue-500 text-white rounded-r px-4 py-2"
+              className="bg-blue-500 text-white rounded-r px-4 py-2 w-full lg:w-auto"
             >
               Pesquisar
             </button>
@@ -62,17 +77,27 @@ export function CardTransacao() {
         </div>
       </div>
 
-      <div className="bg-cinzaClaro2 h-6/12 mt-20 shadow-2xl shadow-black flex justify-center rounded-3xl">
-        <body className="bg-cinzaClaro2 w-full rounded-3xl">
-          <div className="bg-cinzaClaro2 shadow-md rounded-3xl">
+      <div className="bg-cinzaClaro2 mt-10 shadow-2xl shadow-black flex justify-center rounded-3xl transition-transform duration-500 transform hover:scale-105">
+        <div className="w-full rounded-3xl">
+          <div className="shadow-md rounded-3xl overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-white text-left text-7xl font-medium text-cinzaClaro2">
-                  <th className="px-4 py-10">Data</th>
-                  <th className="px-4 py-10">Descrição</th>
-                  <th className="px-4 py-10">Categoria</th>
-                  <th className="px-4 py-10">Conta</th>
-                  <th className="px-4 py-10">Valor</th>
+                <tr className="bg-white text-left text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-cinzaClaro2">
+                  <th className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                    Data
+                  </th>
+                  <th className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                    Descrição
+                  </th>
+                  <th className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                    Categoria
+                  </th>
+                  <th className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                    Conta
+                  </th>
+                  <th className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                    Valor
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -80,32 +105,49 @@ export function CardTransacao() {
                   transacao.map((item, index) => (
                     <tr
                       key={index}
-                      className="hover:bg-cinzaClaro3 text-6xl text-white rounded-3xl"
+                      className="hover:bg-cinzaClaro3 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white rounded-3xl transition-colors duration-300"
                     >
-                      <td className="px-4 py-10">{item.data}</td>
-                      <td className="px-4 py-10">{item.descricao}</td>
-                      <td className="px-4 py-10">
+                      <td className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                        {formatDate(item.data)}
+                      </td>
+                      <td className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                        {item.descricao}
+                      </td>
+                      <td className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
                         {item.categoria.categoriaPersonalizada}
                       </td>
-                      <td className="px-4 py-10">{item.conta}</td>
-                      <td className="px-4 py-10">{item.valor}</td>
+                      <td className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                        {item.conta}
+                      </td>
+                      <td className="px-2 py-2 sm:px-4 sm:py-4 md:px-6 md:py-6 lg:px-8 lg:py-10">
+                        {formatCurrency(item.valor)}
+                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5">Nenhum dado de transação disponível</td>
+                    <td
+                      colSpan="5"
+                      className="text-center py-2 sm:py-4 md:py-6 lg:py-10"
+                    >
+                      Nenhum dado de transação disponível
+                    </td>
                   </tr>
                 )}
               </tbody>
             </table>
           </div>
-          <div className="mt-4 flex items-center p-5">
+          <div className="mt-4 flex items-center p-2 sm:p-4 md:p-5">
             <div className="flex items-center">
-              <div className="text-6xl text-white">Linhas por página:</div>
-              <span className="text-6xl text-white">2</span>
+              <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white">
+                Linhas por página:
+              </div>
+              <span className="ml-2 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white">
+                2
+              </span>
             </div>
           </div>
-        </body>
+        </div>
       </div>
     </div>
   );

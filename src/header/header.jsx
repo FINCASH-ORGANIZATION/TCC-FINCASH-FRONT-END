@@ -1,9 +1,7 @@
 import { useContext, useEffect } from "react";
 import Cookies from "js-cookie";
-import {
-  UsuarioLogado,
-} from "../services/usuarioServico";
-import { puxarTransacaoUsuario} from "../services/transacaoServico"
+import { UsuarioLogado } from "../services/usuarioServico";
+import { puxarTransacaoUsuario } from "../services/transacaoServico";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Context/usuarioContext";
 import { TransacaoContext } from "../Context/transacaoContext";
@@ -39,31 +37,28 @@ export function HeaderHome() {
   }, []);
 
   return (
-    <header className="absolute bg-cinzaEscuro shadow-lg shadow-black flex h-44 w-screen items-center justify-end font-mono">
-      <nav className="flex items-center text-branco">
-        <div className="absolute flex items-center left-0 ml-16 w-24 h-24">
-          {!user.avatar ? (
-            <img src={user.avatar} className="w-24 h-24" />
-          ) : (
-            <img
-              src="./src/Image/perfil.png"
-              alt="imagem de perfil"
-              className="w-24 h-24"
-            />
-          )}
+    <header className="absolute bg-cinzaEscuro shadow-lg shadow-black flex h-20 md:h-24 lg:h-28 w-screen items-center justify-between font-mono px-6 md:px-10 lg:px-16 xl:px-20">
+      <div className="flex items-center">
+        <div className="flex items-center">
           <img
             src="../src/Image/logofincash.png"
-            alt=""
-            className="w-32 h-28"
+            alt="Fincash Logo"
+            className="w-12 md:w-16 lg:w-20 h-auto"
           />
-          <span className="text-8xl">fincash</span>
+          <span className="text-4xl md:text-5xl lg:text-6xl text-white ml-2 md:ml-4">
+            fincash
+          </span>
         </div>
+      </div>
 
+      <nav className="flex items-center">
         {user.nome ? (
-          <p className="pr-10 text-6xl text-white">{user.nome}</p>
+          <p className="pr-6 text-lg md:text-2xl lg:text-3xl text-white hidden md:block">
+            {user.nome}
+          </p>
         ) : (
           <Link to={"/Login"}>
-            <button className="transition-all rounded-full bg-amareloPastel mr-5 px-10 py-3 font-mono text-3xl text-black hover:bg-amber-300 text-center">
+            <button className="transition-all rounded-full bg-yellow-300 mr-4 md:mr-8 px-6 md:px-8 py-2 md:py-3 font-mono text-base md:text-xl text-black hover:bg-yellow-400 text-center">
               Faça seu login
             </button>
           </Link>
@@ -71,17 +66,21 @@ export function HeaderHome() {
 
         {user.nome && user.avatar ? (
           <Link to="/perfil">
-            <button className="transition-all rounded-full bg-amareloPastel px-3 py-3 font-medium text-black hover:bg-amber-300 mr-16">
-              <img src={user.avatar} alt="Perfil" className="w-24 h-24" />
+            <button className="transition-all rounded-full bg-yellow-300 px-3 md:px-4 py-2 md:py-3 font-medium text-black hover:bg-yellow-400 mr-4 md:mr-8">
+              <img
+                src={user.avatar}
+                alt="Perfil"
+                className="w-10 md:w-12 lg:w-14 h-auto rounded-full"
+              />
             </button>
           </Link>
         ) : (
           <Link to="/perfil">
-            <button className="transition-all rounded-full bg-amareloPastel px-3 py-3 font-medium text-black hover:bg-amber-300 mr-16">
+            <button className="transition-all rounded-full bg-yellow-300 px-3 md:px-4 py-2 md:py-3 font-medium text-black hover:bg-yellow-400 mr-4 md:mr-8">
               <img
                 src="../src/image/perfil.png"
                 alt="Perfil"
-                className="w-24 h-24"
+                className="w-10 md:w-12 lg:w-14 h-auto rounded-full"
               />
             </button>
           </Link>

@@ -16,13 +16,12 @@
 }
 
 a {
-  color: #00B3FF;
+  color: #00b3ff;
 }
 
 a:hover {
-  color: #00B3FF;
+  color: #00b3ff;
 }
-
 
 @media (prefers-color-scheme: light) {
   :root {

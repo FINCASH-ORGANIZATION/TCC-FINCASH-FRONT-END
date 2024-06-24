@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Input } from "../input/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import "../CardPrincipal/AddCartao.css"; // Importação do arquivo CSS para estilos
 import { criarCartao } from "../services/cartaoServico.js";
 import { AddCartãoSchema } from "../Schema/AddCartãoSchema.js";
+import { useNavigate } from "react-router-dom";
+import "./css/AddCartao.css";
 
 export default function AddCartao() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,7 +25,8 @@ export default function AddCartao() {
       data.conta = contaSelecionada.nome; // Envia apenas o nome da conta selecionada
     }
     const response = await criarCartao(data);
-    console.log(response); // Teste para verificar se o cartão foi criado com sucesso
+    navigate("/home");
+    console.log(response);
     return response;
   }
 

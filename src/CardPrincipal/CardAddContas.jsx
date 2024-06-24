@@ -13,7 +13,7 @@ export default function CardAddContas() {
         </button>
         <Input
           type="string"
-          name={"conta"}
+          name="conta"
           className="text-8xl placeholder:text-teal-600 border-b-4 border-gray-500 rounded-none"
           placeholder="R$0,00"
           register={register}

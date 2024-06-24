@@ -1,19 +1,26 @@
-import { useContext, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { TransacaoContext } from "../Context/transacaoContext";
 
 export default function CardPrincipalHome() {
   const { transacao } = useContext(TransacaoContext);
-//  const { receita, setReceita} = useEffect(() => {})
+  const [receita, setReceita] = useState([]);
 
-  useEffect(() => {}, [transacao]);
+  useEffect(() => {
+    if (Array.isArray(transacao)) {
+      const transacoesReceita = transacao.filter(
+        (item) => item.tipo === "receita"
+      );
+      setReceita(transacoesReceita);
+    }
+  }, [transacao]);
 
   return (
     <div className="bg-cinzaClaro2 absolute w-9/12 h-6/12 mt-96 shadow-2xl shadow-black flex justify-center rounded-3xl">
       <div className="bg-cinzaClaro2 w-full rounded-3xl">
         <div className="bg-cinzaClaro2 shadow-md rounded-3xl">
-          <table className="w-full border-collapse ">
+          <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-white text-left text-7xl font-medium text-cinzaClaro2 ">
+              <tr className="bg-white text-left text-7xl font-medium text-cinzaClaro2">
                 <th className="px-4 py-10 text-center">Data</th>
                 <th className="px-4 py-10 text-center">Descrição</th>
                 <th className="px-4 py-10 text-center">Categoria</th>
@@ -23,8 +30,8 @@ export default function CardPrincipalHome() {
               </tr>
             </thead>
             <tbody>
-              {Array.isArray(transacao) ? (
-                transacao.map((item, index) => (
+              {Array.isArray(receita) && receita.length > 0 ? (
+                receita.map((item, index) => (
                   <tr
                     key={index}
                     className="hover:bg-cinzaClaro3 text-6xl text-white rounded-3xl"
@@ -40,7 +47,7 @@ export default function CardPrincipalHome() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5">Nenhum dado de transação disponível</td>
+                  <td colSpan="5">Nenhuma receita disponível</td>
                 </tr>
               )}
             </tbody>

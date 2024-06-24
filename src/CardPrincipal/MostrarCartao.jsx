@@ -2,9 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import { pesCartao, deletarCartao } from "../services/cartaoServico";
 import Cookies from "js-cookie";
 import { Transition } from "react-transition-group";
-import "./transicoes.css"; // Importe seu arquivo CSS com as classes de transição
+import intermediumImage from "../Image/intermedium.png"; // Importe a imagem do Banco Inter
+import "./css/transicoes.css"; // Importe seu arquivo CSS com as classes de transição
 
-export default function MostrarCartao() {
+const MostrarCartao = () => {
   const [cartoes, setCartoes] = useState([]);
   const [paginaAtual, setPaginaAtual] = useState(1);
   const [cartaoParaDeletar, setCartaoParaDeletar] = useState(null);
@@ -71,6 +72,87 @@ export default function MostrarCartao() {
     }
   }
 
+  // Função para renderizar o cartão em formato de formulário estilizado
+  const renderizarFormularioCartao = (cartao, index) => {
+    // Determina qual imagem utilizar com base no nome da conta
+    let imagemCartao;
+    if (cartao.conta === "Banco Inter") {
+      imagemCartao = intermediumImage; // Imagem do Banco Inter
+    } else {
+      // Caso queira adicionar outras lógicas para outros tipos de conta
+      imagemCartao = cartao.imagemPadrao; // Use a imagem padrão do cartão
+    }
+
+    return (
+      <div
+        key={index}
+        className="flex flex-col justify-between bg-gray-800 p-4 border border-white border-opacity-30 rounded-lg shadow-md max-w-xs mx-auto"
+      >
+        <div className="flex flex-row items-center justify-between mb-3">
+          <input
+            className="w-full h-10 border-none outline-none text-sm bg-gray-800 text-white font-semibold caret-orange-500 pl-2 mb-3"
+            type="text"
+            name="cardName"
+            id="cardName"
+            value={cartao.nome}
+            readOnly
+          />
+          <div className="flex items-center justify-center relative w-14 h-9 bg-gray-800 border border-white border-opacity-20 rounded-md">
+            <img
+              src={imagemCartao}
+              alt={cartao.nome}
+              className="w-8 h-8 object-contain"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col space-y-3">
+          <input
+            className="w-full h-10 border-none outline-none text-sm bg-gray-800 text-white font-semibold caret-orange-500 pl-2"
+            type="text"
+            name="cardNumber"
+            id="cardNumber"
+            value={cartao.descricao}
+            readOnly
+          />
+          <div className="flex flex-row justify-between">
+            <input
+              className="w-1/2 h-10 border-none outline-none text-sm bg-gray-800 text-white font-semibold caret-orange-500 pl-2"
+              type="text"
+              name="expiryDate"
+              id="expiryDate"
+              value={`Vencimento: ${cartao.vencimento}`}
+              readOnly
+            />
+            <input
+              className="w-1/2 h-10 border-none outline-none text-sm bg-gray-800 text-white font-semibold caret-orange-500 pl-2"
+              type="text"
+              name="closingDate"
+              id="closingDate"
+              value={`Fechamento: ${cartao.fechamento}`}
+              readOnly
+            />
+          </div>
+          <div className="flex justify-between">
+            <input
+              className="w-2/3 h-10 border-none outline-none text-sm bg-gray-800 text-white font-semibold caret-orange-500 pl-2"
+              type="text"
+              name="cvv"
+              id="cvv"
+              value={`Limite: R$${cartao.limite}`}
+              readOnly
+            />
+            <button
+              onClick={() => confirmarDelecao(cartao.id)}
+              className="w-1/3 h-10 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none"
+            >
+              Deletar
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col mb-20">
       <h1 className="text-7xl text-white text-center mb-16">Seus Cartões</h1>
@@ -80,44 +162,15 @@ export default function MostrarCartao() {
             key={index}
             nodeRef={nodeRefs.current[index]} // Passa a ref para o Transition
             timeout={500}
+            classNames="transicao" // Nome da classe CSS para as transições
           >
             {(state) => (
               <div
                 ref={(el) => (nodeRefs.current[index] = el)} // Armazena a ref para cada elemento
-                className={`transicao-${state}`}
-                style={{ marginBottom: "20px" }} // Espaçamento entre os cartões
+                className={`transicao-${state} mb-10 md:mb-0 md:mr-10`}
               >
-                <div className="bg-white w-96 p-5 shadow-2xl rounded-lg relative overflow-hidden">
-                  <img
-                    src={cartao.imagem}
-                    alt={cartao.nome}
-                    className="absolute top-0 right-0 h-16 w-16 object-contain p-2"
-                  />
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl mb-4">{cartao.nome}</span>
-                    <div className="flex justify-between w-full mb-4">
-                      <span className="text-lg">Valor: R${cartao.valor}</span>
-                      <button
-                        onClick={() => confirmarDelecao(cartao.id)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none"
-                      >
-                        Deletar
-                      </button>
-                    </div>
-                    <div className="flex flex-wrap justify-between w-full mb-4">
-                      <span className="text-lg">Limite: R${cartao.limite}</span>
-                      <span className="text-lg">
-                        Vencimento: {cartao.vencimento}
-                      </span>
-                      <span className="text-lg">
-                        Fechamento: {cartao.fechamento}
-                      </span>
-                      <span className="text-lg">
-                        Descrição: {cartao.descricao}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                {renderizarFormularioCartao(cartao, index)}{" "}
+                {/* Renderiza o formulário estilizado do cartão com os dados do cartão atual */}
               </div>
             )}
           </Transition>
@@ -174,4 +227,6 @@ export default function MostrarCartao() {
       )}
     </div>
   );
-}
+};
+
+export default MostrarCartao;

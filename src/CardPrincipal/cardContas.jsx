@@ -1,4 +1,4 @@
-import "../CardPrincipal/cardContas.css";
+import "./css/cardContas.css";
 
 export default function CardContas() {
   return (

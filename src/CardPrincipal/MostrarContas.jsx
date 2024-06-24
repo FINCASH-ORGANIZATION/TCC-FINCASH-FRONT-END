@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import { pesConta, apagarConta as apagarContaServico } from "../services/contaServico"; // Renomeie a função de serviço para evitar conflito de nomes
+import {
+  pesConta,
+  apagarConta as apagarContaServico,
+} from "../services/contaServico"; // Renomeie a função de serviço para evitar conflito de nomes
 
 export default function MostrarContas() {
   const [contas, setContas] = useState([]); // Inicializa contas como um array vazio
@@ -51,7 +54,9 @@ export default function MostrarContas() {
   if (contas.length === 0) {
     return (
       <div className="flex flex-col items-center mt-10">
-        <p className="text-3xl text-white mb-5">Você ainda não cadastrou suas contas.</p>
+        <p className="text-3xl text-white mb-5">
+          Você ainda não cadastrou suas contas.
+        </p>
       </div>
     );
   }
@@ -61,7 +66,10 @@ export default function MostrarContas() {
       <h1 className="text-7xl text-white text-center mb-16">Suas Contas</h1>
       <div className="grid grid-cols-3 gap-y-10">
         {contas.map((conta, index) => (
-          <div key={index} className="flex flex-col justify-center items-center">
+          <div
+            key={index}
+            className="flex flex-col justify-center items-center"
+          >
             <div className="card bg-white w-10/12 p-5 shadow-2xl rounded-3xl shadow-black flex flex-col">
               <div className="flex justify-between items-center">
                 <span className="text-5xl">{conta.banco}</span>

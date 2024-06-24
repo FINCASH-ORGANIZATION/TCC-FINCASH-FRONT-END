@@ -13,6 +13,7 @@ import Transacao from "./Pages/Transacao.jsx";
 import Perfil from "./Pages/Perfil.jsx";
 import { UserProvider } from "./Context/usuarioContext.jsx";
 import { TransacaoProvider } from "./Context/transacaoContext.jsx";
+import MostrarCartao from "./CardPrincipal/MostrarCartao.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,9 @@ const router = createBrowserRouter([
         path: "/Contas",
         element: <Contas />,
       },
+
+      { path: "/Mostrar/Cartoes", element: <MostrarCartao /> },
+
       {
         path: "/Transacao",
         element: <Transacao />,

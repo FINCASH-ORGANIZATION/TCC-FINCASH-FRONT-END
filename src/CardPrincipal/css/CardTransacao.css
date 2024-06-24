@@ -1,0 +1,55 @@
+/* CardTransacao.css */
+
+.bg-cinzaClaro2 {
+  background-color: #f0f0f0; /* exemplo de cor, ajuste conforme necessário */
+}
+
+.bg-cinzaClaro3 {
+  background-color: #d3d3d3; /* exemplo de cor, ajuste conforme necessário */
+}
+
+.text-cinzaClaro2 {
+  color: #7a7a7a; /* exemplo de cor, ajuste conforme necessário */
+}
+
+.text-cinzaClaro5 {
+  color: #555555; /* exemplo de cor, ajuste conforme necessário */
+}
+
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+.transition-colors {
+  transition: background-color 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  .text-3xl {
+    font-size: 1.875rem;
+  }
+  .text-5xl {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-xl {
+    font-size: 1.5rem;
+  }
+  .text-2xl {
+    font-size: 1.75rem;
+  }
+  .text-3xl {
+    font-size: 2.25rem;
+  }
+  .text-5xl {
+    font-size: 3.5rem;
+  }
+}

@@ -14,7 +14,7 @@ export default function App() {
     setMostrarCartoes(false); // Certificando-se de que MostrarCartao não está sendo exibido
   };
 
-  // Função para alternar entre a Fexibição do AddCartao e MostrarCartao
+  // Função para alternar entre a exibição do AddCartao e MostrarCartao
   const handleMostrarCartoes = () => {
     setMostrarCartoes(!mostrarCartoes);
     setMostrarAddCartao(false); // Certificando-se de que AddCartao não está sendo exibido
@@ -30,26 +30,38 @@ export default function App() {
         ) : mostrarCartoes ? (
           <MostrarCartao />
         ) : (
-          <div className="flex mt-10 space-x-10">
+          <div className="flex flex-col md:flex-row mt-10 space-y-10 md:space-y-0 md:space-x-10">
             <div className="flex flex-col justify-center items-center">
-              <div className="bg-white p-20 rounded-3xl shadow-2xl shadow-black">
+              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl shadow-black transition-transform duration-500 transform hover:scale-105">
                 <button
                   className="flex flex-col justify-center items-center"
                   onClick={handleMostrarAddCartao}
                 >
-                  <img src="../src/Image/mais.png" alt="" className="w-44" />
-                  <span className="text-8xl text-black">Adicionar</span>
+                  <img
+                    src="../src/Image/mais.png"
+                    alt=""
+                    className="w-20 md:w-44"
+                  />
+                  <span className="text-2xl md:text-8xl text-black">
+                    Adicionar
+                  </span>
                 </button>
               </div>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <div className="bg-white p-20 rounded-3xl shadow-2xl shadow-black">
+              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl shadow-black transition-transform duration-500 transform hover:scale-105">
                 <button
                   className="flex flex-col justify-center items-center"
                   onClick={handleMostrarCartoes}
                 >
-                  <img src="../src/Image/cartoes.png" alt="" className="w-44" />
-                  <span className="text-8xl text-black">Ver Cartões</span>
+                  <img
+                    src="../src/Image/cartoes.png"
+                    alt=""
+                    className="w-20 md:w-44"
+                  />
+                  <span className="text-2xl md:text-8xl text-black">
+                    Ver Cartões
+                  </span>
                 </button>
               </div>
             </div>
