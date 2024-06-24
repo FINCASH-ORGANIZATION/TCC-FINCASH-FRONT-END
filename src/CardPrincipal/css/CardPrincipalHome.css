@@ -1,5 +1,4 @@
-
-
+/* CardPrincipalHome.css */
 .transition-transform {
   transition: transform 0.3s ease-in-out;
 }
@@ -7,8 +6,6 @@
 .transition-colors {
   transition: background-color 0.3s ease-in-out;
 }
-
-/* styles.css */
 
 @keyframes fade-in {
   0% {

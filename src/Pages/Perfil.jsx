@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { HeaderHome } from "../header/header.jsx";
 import { UsuarioLogado, atualizarUsuario } from "../services/usuarioServico.js";
 import { Input } from "../input/input.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,7 +10,6 @@ import { perfilSchema } from "../Schema/perfilSchema.js";
 
 export default function Perfil() {
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -19,55 +18,65 @@ export default function Perfil() {
     resolver: zodResolver(perfilSchema),
   });
 
-  const [user, setUsuario] = useState(null); // Inicializado como null para evitar erros iniciais
-  const [editando, setEditando] = useState(false); // Estado para controlar se o usuário está editando
+  const [user, setUsuario] = useState(null);
+  const [editando, setEditando] = useState(false);
+  const [animateMoeda, setAnimateMoeda] = useState(false); // Estado para controlar a animação da moeda
 
-  // Estados para os campos de edição
-  const [nome, setNome] = useState("");
-  const [sobrenome, setSobrenome] = useState("");
-  const [avatar, setAvatar] = useState("");
-
-  async function pesUsuarioLogado() {
+  async function fetchUsuarioLogado() {
     try {
       const response = await UsuarioLogado();
+      console.log("Usuário logado:", response.data.usuario);
       setUsuario(response.data.usuario);
     } catch (error) {
-      console.log(error);
+      console.error("Erro ao buscar usuário logado:", error);
     }
   }
 
   useEffect(() => {
     if (Cookies.get("token")) {
-      pesUsuarioLogado();
+      console.log("Token encontrado nos cookies. Buscando usuário logado...");
+      fetchUsuarioLogado();
+    } else {
+      console.log("Token não encontrado nos cookies. Usuário não autenticado.");
     }
   }, []);
 
-  function Deslogar() {
-    Cookies.remove("token");
-    setUsuario(null); // Reinicializa user para evitar acessos após deslogar
-    navigate("/");
-  }
-
-  // Função para lidar com o envio do formulário de atualização
-  const onSubmit = async (data) => {
+  const onSubmitAtualizar = async (data) => {
     try {
-      const response = await atualizarUsuario(data); // Chama a função do serviço para atualizar o usuário
-      console.log(response);
+      console.log("Dados enviados para atualização:", data);
+      const response = await atualizarUsuario(data);
+      console.log("Resposta da atualização:", response);
       setEditando(false);
+      fetchUsuarioLogado();
+      setAnimateMoeda(true); // Ativar animação da moeda ao atualizar
+      setTimeout(() => setAnimateMoeda(false), 1000); // Desativar após 1 segundo
     } catch (error) {
       console.error("Erro ao atualizar usuário:", error);
     }
   };
 
-  // Função para alternar entre modo de edição e visualização
   const toggleEdicao = () => {
     setEditando(!editando);
-    // Preenche os campos de edição com os dados atuais do usuário ao entrar no modo de edição
-    if (user) {
-      setNome(user.nome);
-      setSobrenome(user.sobrenome);
-      setAvatar(user.avatar || ""); // Se o usuário não tiver avatar, deixa vazio inicialmente
-    }
+    console.log("Modo de edição alterado. Editando:", !editando);
+    setAnimateMoeda(true); // Ativar animação da moeda ao entrar no modo de edição
+  };
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    setUsuario(null);
+    navigate("/");
+    console.log("Usuário desconectado. Redirecionando para a página inicial.");
+  };
+
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(value);
+  };
+
+  const fecharFormulario = () => {
+    setEditando(false);
   };
 
   return (
@@ -113,39 +122,34 @@ export default function Perfil() {
             </div>
           ) : (
             <form
-              onSubmit={handleSubmit(onSubmit)} // Passa a função de submissão do react-hook-form
+              onSubmit={handleSubmit(onSubmitAtualizar)}
               className="grid grid-cols-1 gap-4 mb-4 text-center"
             >
               <div>
                 <Input
                   name="nome"
                   type="text"
-                  onChange={(e) => setNome(e.target.value)}
                   className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-cinzaClaro2 p-2 border-b-2 border-cinzaClaro2 bg-transparent"
                   placeholder="Nome"
-                  required
-                  register={register} // Adicione o register como propriedade
+                  register={register}
                 />
               </div>
               <div>
                 <Input
                   name="sobrenome"
                   type="text"
-                  onChange={(e) => setSobrenome(e.target.value)}
                   className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-cinzaClaro2 p-2 border-b-2 border-cinzaClaro2 bg-transparent"
                   placeholder="Sobrenome"
-                  required
-                  register={register} // Adicione o register como propriedade
+                  register={register}
                 />
               </div>
               <div>
                 <Input
                   name="avatar"
                   type="text"
-                  onChange={(e) => setAvatar(e.target.value)}
                   className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-cinzaClaro2 p-2 border-b-2 border-cinzaClaro2 bg-transparent"
                   placeholder="URL do Avatar (opcional)"
-                  register={register} // Adicione o register como propriedade
+                  register={register}
                 />
               </div>
               <button
@@ -158,19 +162,18 @@ export default function Perfil() {
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full mt-4">
-            <Link to="/home" className="w-full">
-              <button
-                className="w-full text-black bg-green-600 text-xl sm:text-2xl md:text-3xl font-bold font-mono px-4 py-2 rounded-lg transition-all transform hover:scale-105"
-                type="button" // Corrigido para type="button"
-              >
-                Voltar
-              </button>
-            </Link>
+            <button
+              className="w-full text-black bg-green-600 text-xl sm:text-2xl md:text-3xl font-bold font-mono px-4 py-2 rounded-lg transition-all transform hover:scale-105"
+              type="button"
+              onClick={fecharFormulario}
+            >
+              Voltar
+            </button>
 
             {!editando ? (
               <button
                 className="w-full bg-azulclaro text-xl sm:text-2xl md:text-3xl font-bold font-mono px-4 py-2 rounded-lg transition-all transform hover:scale-105"
-                type="button" // Corrigido para type="button"
+                type="button"
                 onClick={toggleEdicao}
               >
                 Editar
@@ -178,9 +181,11 @@ export default function Perfil() {
             ) : null}
 
             <button
-              className="w-full bg-red-500 text-xl sm:text-2xl md:text-3xl font-bold font-mono px-4 py-2 rounded-lg transition-all transform hover:scale-105"
-              type="button" // Corrigido para type="button"
-              onClick={Deslogar}
+              className={`w-full bg-red-500 text-xl sm:text-2xl md:text-3xl font-bold font-mono px-4 py-2 rounded-lg transition-all transform hover:scale-105 ${
+                animateMoeda ? "animate-moeda" : ""
+              }`}
+              type="button"
+              onClick={handleLogout}
             >
               Sair
             </button>

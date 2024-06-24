@@ -1,5 +1,6 @@
 import "../Card/CardHomeStyled.css";
 
+
 export function CardHome() {
   return (
     <>

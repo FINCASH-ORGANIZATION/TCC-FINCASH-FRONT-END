@@ -30,3 +30,17 @@ export async function puxarTransacaoUsuario() {
     console.error("Erro ao buscar transação:", error);
   }
 }
+
+export async function CriarTransacaoUsuario(data) {
+  try {
+    const response = await axios.post(`${baseURL}/transacao/`, data, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      },
+    });
+    //console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar transação:", error);
+  }
+}

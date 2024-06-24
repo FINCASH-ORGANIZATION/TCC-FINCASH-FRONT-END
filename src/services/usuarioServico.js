@@ -61,16 +61,22 @@ export async function esqueceuSenhaAtualizar(requestData) {
 }
 
 export async function atualizarUsuario(data) {
+  const body = {
+    ...data,
+  };
+
   try {
-    const response = await axios.patch(`${baseURL}/Usuario/`, data, {
+    const response = await axios.patch(`${baseURL}/Usuario/att`, body, {
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
+      
     });
-    console.log(response.data);
+    console.log("Dados enviados para atualização:", body);
+    console.log("Resposta da atualização:", response.data);
     return response;
   } catch (error) {
-    console.error("Erro ao atualizar usuario", error);
+    console.error("Erro ao atualizar usuário:", error);
     throw error;
   }
 }
