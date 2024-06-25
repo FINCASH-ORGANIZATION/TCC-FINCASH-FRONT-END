@@ -42,8 +42,8 @@ export default function AddCartao() {
   return (
     <div className="flex flex-col justify-center items-center">
       <span className="text-9xl text-white">Cartões de Crédito</span>
-      <div className="card bg-white w-full px-6 py-8 mt-5 shadow-2xl rounded-3xl shadow-black flex flex-col items-center">
-        <span className="text-7xl mt-10">Novo cartão</span>
+      <div className="card bg-cinzaClaro1 w-full px-6 py-8 mt-5 shadow-2xl rounded-3xl shadow-black flex flex-col items-center">
+        <span className="text-7xl text-white mt-10">Novo cartão</span><br />
 
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
           <Input
@@ -55,6 +55,7 @@ export default function AddCartao() {
           />
 
           <br />
+          <br />
           <Input
             name="descricao"
             className="Input"
@@ -62,6 +63,8 @@ export default function AddCartao() {
             placeholder="Descrição"
             register={register}
           />
+          <br />
+          <br />
 
           <Input
             name="limite"
@@ -72,7 +75,7 @@ export default function AddCartao() {
           />
 
           <div className="relative w-full">
-            <h2 className="text-4xl my-5">Fechamento</h2>
+            <h2 className="text-4xl text-white my-5">Fechamento</h2>
             <Input
               name="fechamento"
               className="Input"
@@ -81,7 +84,7 @@ export default function AddCartao() {
               register={register}
             />
 
-            <h2 className="text-4xl my-5">Vencimento</h2>
+            <h2 className="text-4xl text-white my-5">Vencimento</h2>
             <Input
               name="vencimento"
               className="Input"
@@ -91,19 +94,16 @@ export default function AddCartao() {
             />
 
             <br />
-            <span className="text-6xl text-cinzaClaro2 font-semibold">
-              Escolha uma conta para o cartão
-            </span>
             <button
               type="button" // Alterado de submit para button
-              className="bg-neutral-400 flex justify-between items-center w-full p-5 mt-10 rounded-3xl hover:bg-cinzaClaro6"
+              className="bg-neutral-400 flex justify-between items-center w-full p-5 mt-10 rounded-xl hover:bg-cinzaClaro6"
               onClick={toggleContasDropdown}
             >
               {contaSelecionada ? (
                 <>
                   <img
                     src={contaSelecionada.imagem}
-                    className="rounded-full w-16 md:w-24 lg:w-32"
+                    className="rounded-3xl w-16 md:w-24 lg:w-32"
                     alt={`Logo ${contaSelecionada.nome}`}
                   />
                   <span className="text-6xl ml-4">{contaSelecionada.nome}</span>
@@ -261,9 +261,9 @@ export default function AddCartao() {
 
           <button
             type="submit"
-            className="bg-neutral-400 flex justify-between items-center w-full p-5 mt-10 rounded-3xl hover:bg-cinzaClaro6 transition duration-300"
+            className="bg-amareloPastel flex justify-between items-center w-full p-5 mt-10 rounded-xl hover:bg-amber-300 transition duration-300"
           >
-            <span className="text-6xl mx-auto">Adicionar Cartão</span>
+            <span className="text-6xl py-6 mx-auto">Adicionar Cartão</span>
           </button>
           {/* Input oculto para enviar o nome da conta selecionada */}
         </form>

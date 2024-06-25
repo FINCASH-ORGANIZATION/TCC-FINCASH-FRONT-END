@@ -32,34 +32,34 @@ export default function App() {
         ) : (
           <div className="flex flex-col md:flex-row mt-10 space-y-10 md:space-y-0 md:space-x-10">
             <div className="flex flex-col justify-center items-center">
-              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl hover:shadow-3xl transition duration-500 transform hover:scale-105">
+              <div className="bg-white p-6 md:p-10 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                 <button
-                  className="flex flex-col justify-center items-center"
+                  className="flex flex-col items-center space-x-2 focus:outline-none"
                   onClick={handleMostrarAddCartao}
                 >
                   <img
                     src="../src/Image/mais.png"
                     alt=""
-                    className="w-20 md:w-44"
+                    className="w-36 md:w-36"
                   />
-                  <span className="text-2xl md:text-8xl text-black">
-                    Adicionar
+                  <span className="text-7xl md:text-8xl">
+                    Adicionar Cartão
                   </span>
                 </button>
               </div>
             </div>
-            <div className="flex flex-col justify-center items-center">
-              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl hover:shadow-3xl transition duration-500 transform hover:scale-105">
+            <div className="flex flex-col items-center space-x-2 focus:outline-none">
+              <div className="bg-white p-6 md:p-10 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                 <button
                   className="flex flex-col justify-center items-center"
                   onClick={handleMostrarCartoes}
                 >
                   <img
-                    src="../src/Image/cards.png"
+                    src="../src/Image/cartao-de-credito.png"
                     alt=""
-                    className="w-20 md:w-44"
+                    className="w-36 md:w-36"
                   />
-                  <span className="text-2xl md:text-8xl text-black">
+                  <span className="text-7xl md:text-8xl">
                     Ver Cartões
                   </span>
                 </button>

@@ -56,7 +56,7 @@ export function HeaderHome() {
           </p>
         ) : (
           <Link to={"/Login"}>
-            <button className="transition-all rounded-full bg-yellow-300 mr-4 px-6 py-2 font-mono text-6xl text-black hover:bg-yellow-400 text-center">
+            <button className="transition-all rounded-full bg-amareloPastel mr-4 px-6 py-2 font-mono text-6xl text-black hover:bg-amber-300 text-center">
               Faça seu login
             </button>
           </Link>
@@ -64,13 +64,13 @@ export function HeaderHome() {
 
         {user.nome && user.avatar ? (
           <Link to="/perfil">
-            <button className="transition-all rounded-full bg-yellow-300 p-5 font-medium text-black hover:bg-yellow-400 mr-4">
+            <button className="transition-all rounded-full bg-amareloPastel p-5 font-medium text-black hover:bg-amber-300 mr-4">
               <img src={user.avatar} alt="Perfil" className="w-28 h-auto" />
             </button>
           </Link>
         ) : (
           <Link to="/perfil">
-            <button className="transition-all rounded-full bg-yellow-300 p-5 font-medium text-black hover:bg-yellow-400 mr-4">
+            <button className="transition-all rounded-full bg-amareloPastel p-5 font-medium text-black hover:bg-amber-300 mr-4">
               <img
                 src="../src/image/perfil.png"
                 alt="Perfil"

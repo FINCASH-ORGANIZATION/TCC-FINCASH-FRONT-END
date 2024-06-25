@@ -1,31 +1,19 @@
 // Cartoes.jsx
 import { useState } from "react";
-import { toast } from "react-toastify";
 import { HeaderHome } from "../header/header.jsx";
 import NavigationBar from "../NavBar/NavBar.jsx";
 import { CardTransacao } from "../CardPrincipal/CardTransacao.jsx";
 import { useForm } from "react-hook-form";
 import { Input, Select } from "../input/inputFormShow.jsx";
-import { criarTransacaoUsuario } from "../services/transacaoServico.js";
 
 export default function Cartoes() {
   const [showCardTransacao, setShowCardTransacao] = useState(false);
   const [showFormulario, setShowFormulario] = useState(false);
   const { register, handleSubmit, setValue } = useForm();
 
-  async function onSubmit(data) {
-    try {
-      const response = await criarTransacaoUsuario(data);
-      console.log(response);
-      toast.success("Transação feita com sucesso")
-      console.log(data); // Aqui você pode enviar os dados para onde precisar
-    } catch (error) {
-      console.error('Ocorreu um erro ao criar a transação:', error);
-      toast.error(error)
-      // Aqui você pode lidar com o erro de forma apropriada, como enviar um feedback ao usuário ou registrar o erro
-    }
-  }
-
+  const onSubmit = (data) => {
+    console.log(data); // Aqui você pode enviar os dados para onde precisar
+  };
 
   const handleVerTransacoes = () => {
     setShowCardTransacao(true);
@@ -68,35 +56,35 @@ export default function Cartoes() {
       <div className="bg-cinzaEscuro w-screen h-screen font-mono flex justify-center items-center">
         {!showCardTransacao && !showFormulario && (
           <div className="flex flex-col md:flex-row mt-10 space-y-10 md:space-y-0 md:space-x-10">
-            <div className="f lex flex-col justify-center items-center">
-              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl hover:shadow-3xl transition duration-500 transform hover:scale-105">
+            <div className="flex flex-col justify-center items-center">
+              <div className="bg-white p-6 md:p-10 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                 <button
-                  className="flex flex-col justify-center items-center"
+                  className="flex flex-col items-center space-x-2 focus:outline-none"
                   onClick={handleCriarTransacao}
                 >
                   <img
                     src="../src/Image/mais.png"
                     alt=""
-                    className="w-20 md:w-44"
+                    className="w-36 md:w-36"
                   />
-                  <span className="text-7xl md:text-8xl text-black">
+                  <span className="text-7xl md:text-8xl">
                     Criar Transação
                   </span>
                 </button>
               </div>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl hover:shadow-3xl transition duration-500 transform hover:scale-105">
+              <div className="bg-white p-6 md:p-10 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
                 <button
-                  className="flex flex-col justify-center items-center"
+                  className="flex flex-col items-center space-x-2 focus:outline-none"
                   onClick={handleVerTransacoes}
                 >
                   <img
-                    src="../src/Image/cards.png"
+                    src="../src/Image/moeda.png"
                     alt=""
-                    className="w-20 md:w-44"
+                    className="w-36 md:w-36"
                   />
-                  <span className="text-7xl md:text-8xl text-black">
+                  <span className="text-7xl md:text-8xl">
                     Ver Transações
                   </span>
                 </button>
@@ -110,7 +98,7 @@ export default function Cartoes() {
             onSubmit={handleSubmit(onSubmit)}
             className="mt-10 bg-cinzaClaro1 p-16 rounded-3xl shadow-2xl shadow-black"
           >
-            <h2 className="text-7xl mb-4 text-white">Criar Transação</h2>
+            <h2 className="text-7xl text-center mb-4 text-white">Criar Transação</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
                 type="number"
@@ -133,6 +121,7 @@ export default function Cartoes() {
               <div>
                 <Select
                   name="categoria"
+                  
                   onChange={handleCategoriaChange}
                   register={register}
                 >
@@ -171,7 +160,7 @@ export default function Cartoes() {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 text-white text-7xl p-5 rounded-2xl hover:bg-blue-600 mt-4"
+              className="bg-amareloPastel w-full text-7xl p-10 rounded-xl hover:bg-amber-300 mt-4"
             >
               Criar
             </button>
