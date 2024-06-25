@@ -37,17 +37,15 @@ export function HeaderHome() {
   }, []);
 
   return (
-    <header className="absolute bg-cinzaEscuro shadow-lg shadow-black flex h-20 md:h-24 lg:h-28 w-screen items-center justify-between font-mono px-6 md:px-10 lg:px-16 xl:px-20">
+    <header className="absolute bg-cinzaEscuro shadow-lg shadow-black flex h-44 w-screen items-center justify-between font-mono px-6 md:px-10 lg:px-16 xl:px-20">
       <div className="flex items-center">
         <div className="flex items-center">
           <img
             src="../src/Image/logofincash.png"
             alt="Fincash Logo"
-            className="w-12 md:w-16 lg:w-20 h-auto"
+            className="w-32 h-auto"
           />
-          <span className="text-4xl md:text-5xl lg:text-6xl text-white ml-2 md:ml-4">
-            fincash
-          </span>
+          <span className="text-8xl text-white ml-2 md:ml-4">fincash</span>
         </div>
       </div>
 
@@ -58,7 +56,7 @@ export function HeaderHome() {
           </p>
         ) : (
           <Link to={"/Login"}>
-            <button className="transition-all rounded-full bg-yellow-300 mr-4 md:mr-8 px-6 md:px-8 py-2 md:py-3 font-mono text-base md:text-xl text-black hover:bg-yellow-400 text-center">
+            <button className="transition-all rounded-full bg-yellow-300 mr-4 px-6 py-2 font-mono text-6xl text-black hover:bg-yellow-400 text-center">
               Faça seu login
             </button>
           </Link>
@@ -66,21 +64,17 @@ export function HeaderHome() {
 
         {user.nome && user.avatar ? (
           <Link to="/perfil">
-            <button className="transition-all rounded-full bg-yellow-300 px-3 md:px-4 py-2 md:py-3 font-medium text-black hover:bg-yellow-400 mr-4 md:mr-8">
-              <img
-                src={user.avatar}
-                alt="Perfil"
-                className="w-10 md:w-12 lg:w-14 h-auto rounded-full"
-              />
+            <button className="transition-all rounded-full bg-yellow-300 p-5 font-medium text-black hover:bg-yellow-400 mr-4">
+              <img src={user.avatar} alt="Perfil" className="w-28 h-auto" />
             </button>
           </Link>
         ) : (
           <Link to="/perfil">
-            <button className="transition-all rounded-full bg-yellow-300 px-3 md:px-4 py-2 md:py-3 font-medium text-black hover:bg-yellow-400 mr-4 md:mr-8">
+            <button className="transition-all rounded-full bg-yellow-300 p-5 font-medium text-black hover:bg-yellow-400 mr-4">
               <img
                 src="../src/image/perfil.png"
                 alt="Perfil"
-                className="w-10 md:w-12 lg:w-14 h-auto rounded-full"
+                className="w-28 h-auto"
               />
             </button>
           </Link>

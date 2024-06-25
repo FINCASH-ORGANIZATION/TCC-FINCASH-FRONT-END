@@ -41,7 +41,14 @@ export default function MostrarContas() {
 
   // Verificação de carregamento antes de renderizar as contas
   if (carregando) {
-    return <p>Carregando...</p>; // Exibe uma mensagem de carregamento enquanto as contas são buscadas
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <div class="loader border-r-2 rounded-full border-yellow-500 bg-yellow-300 animate-bounce aspect-square w-44 flex justify-center items-center text-yellow-700 text-9xl">
+          $
+        </div>
+        <p className="text-6xl text-yellow-700">Carregando</p>
+      </div>
+    ); // Exibe uma mensagem de carregamento enquanto as contas são buscadas
   }
 
   // Verifica se contas é um array antes de renderizar

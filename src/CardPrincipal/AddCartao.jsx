@@ -38,11 +38,14 @@ export default function AddCartao() {
     setContaSelecionada(conta);
     setContasDropdownAberto(false); // Fecha o dropdown após selecionar a conta
   };
-  n;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 84f48fa3fa2067650e7ac6ebb6b944dec7bfec2e
   return (
     <div className="flex flex-col justify-center items-center">
       <span className="text-9xl text-white">Cartões de Crédito</span>
-      <div className="card bg-white w-full sm:max-w-md md:max-w-lg lg:max-w-3xl px-6 py-8 mt-5 shadow-2xl rounded-3xl shadow-black flex flex-col items-center">
+      <div className="card bg-white w-full px-6 py-8 mt-5 shadow-2xl rounded-3xl shadow-black flex flex-col items-center">
         <span className="text-7xl mt-10">Novo cartão</span>
 
         <form onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -134,9 +137,9 @@ export default function AddCartao() {
                 className="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50 transition-opacity"
                 onClick={toggleContasDropdown}
               >
-                <ul className="bg-white w-full sm:max-w-sm md:max-w-lg lg:max-w-xl p-6 rounded-xl shadow-xl">
+                <ul className="bg-white w-4/12 text-7xl p-20 rounded-3xl shadow-xl">
                   <li
-                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center"
+                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
                     onClick={() =>
                       selecionarConta({
                         nome: "Banco do Brasil",
@@ -147,12 +150,13 @@ export default function AddCartao() {
                     <img
                       src="../src/Image/bb.png"
                       alt="Logo Banco do Brasil"
-                      className="rounded-full w-8 mr-2"
+                      className="rounded-full w-24 mr-2"
                     />
                     Banco do Brasil
+                    <img src="../src/Image/seta1.png" alt="" className="w-12" />
                   </li>
                   <li
-                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center"
+                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
                     onClick={() =>
                       selecionarConta({
                         nome: "Nubank",
@@ -163,12 +167,13 @@ export default function AddCartao() {
                     <img
                       src="../src/Image/nubank.png"
                       alt="Logo Nubank"
-                      className="rounded-full w-8 mr-2"
+                      className="rounded-full w-24 mr-2"
                     />
                     Nubank
+                    <img src="../src/Image/seta1.png" alt="" className="w-12" />
                   </li>
                   <li
-                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center"
+                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
                     onClick={() =>
                       selecionarConta({
                         nome: "Bradesco",
@@ -179,12 +184,13 @@ export default function AddCartao() {
                     <img
                       src="../src/Image/bradesco.png"
                       alt="Logo Bradesco"
-                      className="rounded-full w-8 mr-2"
+                      className="rounded-full w-24 mr-2"
                     />
                     Bradesco
+                    <img src="../src/Image/seta1.png" alt="" className="w-12" />
                   </li>
                   <li
-                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center"
+                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
                     onClick={() =>
                       selecionarConta({
                         nome: "Itaú",
@@ -195,12 +201,13 @@ export default function AddCartao() {
                     <img
                       src="../src/Image/itau.png"
                       alt="Logo Itaú"
-                      className="rounded-full w-8 mr-2"
+                      className="rounded-full w-24 mr-2"
                     />
                     Itaú
+                    <img src="../src/Image/seta1.png" alt="" className="w-12" />
                   </li>
                   <li
-                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center"
+                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
                     onClick={() =>
                       selecionarConta({
                         nome: "Santander",
@@ -211,12 +218,13 @@ export default function AddCartao() {
                     <img
                       src="../src/Image/santander.png"
                       alt="Logo Santander"
-                      className="rounded-full w-8 mr-2"
+                      className="rounded-full w-24 mr-2"
                     />
                     Santander
+                    <img src="../src/Image/seta1.png" alt="" className="w-12" />
                   </li>
                   <li
-                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center"
+                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
                     onClick={() =>
                       selecionarConta({
                         nome: "Caixa",
@@ -227,12 +235,13 @@ export default function AddCartao() {
                     <img
                       src="../src/Image/caixa.png"
                       alt="Logo Caixa Econômica"
-                      className="rounded-full w-8 mr-2"
+                      className="rounded-full w-24 mr-2"
                     />
                     Caixa Econômica
+                    <img src="../src/Image/seta1.png" alt="" className="w-12" />
                   </li>
                   <li
-                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center"
+                    className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex justify-between items-center"
                     onClick={() =>
                       selecionarConta({
                         nome: "Banco Inter",
@@ -243,9 +252,10 @@ export default function AddCartao() {
                     <img
                       src="../src/Image/intermedium.png"
                       alt="Logo Banco Inter"
-                      className="rounded-full w-8 mr-2"
+                      className="rounded-full w-24 mr-2"
                     />
                     Banco Inter
+                    <img src="../src/Image/seta1.png" alt="" className="w-12" />
                   </li>
                 </ul>
               </div>
