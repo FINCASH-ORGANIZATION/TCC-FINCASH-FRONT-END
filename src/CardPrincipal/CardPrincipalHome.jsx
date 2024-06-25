@@ -149,9 +149,14 @@ export default function CardPrincipalHome() {
       <div className="bg-cinzaClaro2 w-full rounded-3xl">
         <div className="bg-cinzaClaro2 shadow-md rounded-3xl p-8">
           {carregando ? (
-            <div className="flex items-center justify-center">
-              <div className="loader border-r-2 rounded-full border-yellow-500 bg-yellow-300 animate-spin h-8 w-8 mr-3"></div>
-              <p className="text-3xl text-yellow-700">Carregando...</p>
+            <div className="flex flex-col items-center justify-center">
+              <div
+                class="loader border-r-2 rounded-full border-yellow-500 bg-yellow-300 animate-bounce
+                aspect-square w-20 flex justify-center items-center text-yellow-700 text-6xl"
+              >
+                $
+              </div>
+              <p className="text-6xl text-yellow-700">Carregando</p>
             </div>
           ) : (
             <>
