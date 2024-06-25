@@ -15,6 +15,7 @@ export const Select = ({ type, placeholder, name, onChange, register, children }
     name={name}
     onChange={onChange}
     {...register(name)}
+    className="w-full h-full rounded-2xl text-6xl"
   >
     {children}
   </select>

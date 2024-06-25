@@ -158,7 +158,7 @@ export default function CardPrincipalHome() {
   };
 
   return (
-    <div className="bg-cinzaClaro2 absolute w-9/12 h-6/12 mt-96 shadow-2xl shadow-black flex justify-center rounded-3xl">
+    <div className="bg-cinzaClaro2 absolute w-9/12 h-6/12 shadow-2xl shadow-black flex justify-center rounded-3xl">
       <ToastContainer />
       <div className="bg-cinzaClaro2 w-full rounded-3xl">
         <div className="bg-cinzaClaro2 shadow-md rounded-3xl p-8">
