@@ -51,7 +51,7 @@ export function HeaderHome() {
 
       <nav className="flex items-center">
         {user.nome ? (
-          <p className="pr-6 text-lg md:text-2xl lg:text-3xl text-white hidden md:block">
+          <p className="pr-6 text-4xl md:text-5xl lg:text-6xl text-white hidden md:block">
             {user.nome}
           </p>
         ) : (

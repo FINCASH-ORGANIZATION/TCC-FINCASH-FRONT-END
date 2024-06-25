@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { HeaderHome } from "../header/header.jsx";
 import NavigationBar from "../NavBar/NavBar.jsx";
 import MostrarContas from "../CardPrincipal/MostrarContas.jsx";
@@ -10,27 +10,14 @@ import { Input } from "../input/input.jsx";
 import { toast } from "react-toastify";
 
 const Contas = () => {
-  const { handleSubmit: handleSubmitForm, register } = useForm({
+  const { handleSubmit, register } = useForm({
     resolver: zodResolver(contaSchema),
   });
 
   const [mostrarMostrarContas, setMostrarMostrarContas] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
-  const [contaSelecionada, setContaSelecionada] = useState(null); // Armazena apenas o nome do banco selecionado
+  const [contaSelecionada, setContaSelecionada] = useState(null);
   const [contasDropdownAberto, setContasDropdownAberto] = useState(false);
-
-  // Lista de categorias predefinidas
-  const categorias = [
-    "Salário",
-    "Alimentação",
-    "Transporte",
-    "Saúde",
-    "Educação",
-    "Lazer e entretenimento",
-    "Viagens",
-    "Emergências",
-    "Outros",
-  ];
 
   const handleMostrarMostrarContas = () => {
     setMostrarMostrarContas(true);
@@ -42,24 +29,14 @@ const Contas = () => {
     setMostrarMostrarContas(false);
   };
 
-  async function onSubmit(data) {
+  const onSubmit = async () => {
     try {
-      // Verifica se uma conta está selecionada
       if (!contaSelecionada) {
         toast.error("Você precisa selecionar uma conta.");
         return;
       }
 
-      // Verifica se uma categoria está selecionada
-      if (!data.categoria) {
-        toast.error("Você precisa selecionar uma categoria.");
-        return;
-      }
-
-      // Adiciona o nome do banco selecionado aos dados a serem enviados
-      data.banco = contaSelecionada;
-
-      const response = await criarConta(data);
+      const response = await criarConta({ banco: contaSelecionada.nome });
       toast.success("Conta criada com sucesso!");
       console.log("Dados da resposta:", response);
 
@@ -67,14 +44,14 @@ const Contas = () => {
     } catch (error) {
       toast.error("Erro ao criar conta, tente novamente!");
     }
-  }
+  };
 
   const toggleContasDropdown = () => {
     setContasDropdownAberto(!contasDropdownAberto);
   };
 
   const selecionarConta = (conta) => {
-    setContaSelecionada(conta.nome); // Armazena apenas o nome do banco selecionado
+    setContaSelecionada(conta); // Armazena o objeto completo do banco selecionado
     setContasDropdownAberto(false); // Fecha o dropdown após selecionar a conta
   };
 
@@ -86,25 +63,20 @@ const Contas = () => {
 
         {mostrarFormulario && (
           <form
-            onSubmit={handleSubmitForm(onSubmit)}
-            className="w-full max-w-7xl bg-cinzaClaro1 p-20 rounded-3xl shadow-2xl shadow-black"
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full max-w-7xl bg-cinzaClaro1 p-20 rounded-3xl shadow-2xl"
           >
             <div className="relative mb-6">
-              <h2 className="text-6xl text-white mb-4">
+              <h2 className="text-6xl text-center text-white mb-4">
                 Escolha uma conta para o cartão
               </h2>
               <button
                 type="button"
-                className="bg-gray-200 flex items-center justify-between w-full px-4 py-2 rounded-lg focus:outline-none"
+                className="bg-gray-200 flex items-center justify-between w-full px-4 py-6 rounded-lg focus:outline-none"
                 onClick={toggleContasDropdown}
               >
                 {contaSelecionada ? (
                   <>
-                    <img
-                      src={contaSelecionada.imagem}
-                      className="rounded-full w-10 h-10 md:w-12 md:h-12 mr-2"
-                      alt={`${contaSelecionada.nome}, `}
-                    />
                     <span className="text-xl md:text-2xl">
                       {contaSelecionada.nome}
                     </span>
@@ -126,133 +98,83 @@ const Contas = () => {
               <Input
                 type="hidden"
                 name="conta"
-                value={contaSelecionada || ""}
+                value={contaSelecionada ? contaSelecionada.nome : ""}
                 register={register}
               />
 
               {contasDropdownAberto && (
                 <div className="absolute left-0 right-0 mt-2 bg-white rounded-lg shadow-lg">
                   <ul className="text-xl md:text-2xl">
-                    {/*Banco Do Brasil*/}
                     <li
                       className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center justify-between"
                       onClick={() =>
                         selecionarConta({
                           nome: "Banco do Brasil",
-                          imagem: "../src/Image/bb.png",
                         })
                       }
                     >
-                      <img
-                        src="../src/Image/bb.png"
-                        alt="Logo Banco do Brasil"
-                        className="rounded-full w-20 h-20 md:w-20 md:h-20 mr-2"
-                      />
-                      <span className="text-5xl" >Banco do Brasil</span>
+                      <span className="text-5xl">Banco do Brasil</span>
                     </li>
-                    {/*Caixa*/}
                     <li
                       className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center justify-between"
                       onClick={() =>
                         selecionarConta({
                           nome: "Caixa",
-                          imagem: "../src/Image/caixa.png",
                         })
                       }
                     >
-                      <img
-                        src="../src/Image/caixa.png"
-                        alt="Logo Caixa"
-                        className="rounded-full w-20 h-20 md:w-20 md:h-20 mr-2"
-                      />
-                      <span className="text-5xl" >Caixa</span>
+                      <span className="text-5xl">Caixa</span>
                     </li>
-                    {/*Bradesco*/}
                     <li
                       className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center justify-between"
                       onClick={() =>
                         selecionarConta({
                           nome: "Bradesco",
-                          imagem: "../src/Image/bradesco.png",
                         })
                       }
                     >
-                      <img
-                        src="../src/Image/bradesco.png"
-                        alt="Logo Bradesco"
-                        className="rounded-full w-20 h-20 md:w-20 md:h-20 mr-2"
-                      />
-                      <span className="text-5xl" >Bradesco</span>
+                      <span className="text-5xl">Bradesco</span>
                     </li>
-                    {/*Santander*/}
                     <li
                       className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center justify-between"
                       onClick={() =>
                         selecionarConta({
                           nome: "Santander",
-                          imagem: "../src/Image/santander.png",
                         })
                       }
                     >
-                      <img
-                        src="../src/Image/santander.png"
-                        alt="Logo Santander"
-                        className="rounded-full w-20 h-20 md:w-20 md:h-20 mr-2"
-                      />
-                      <span className="text-5xl" >Santander</span>
+                      <span className="text-5xl">Santander</span>
                     </li>
-                    {/*Itaú*/}
                     <li
                       className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center justify-between"
                       onClick={() =>
                         selecionarConta({
                           nome: "Itaú",
-                          imagem: "../src/Image/itau.png",
                         })
                       }
                     >
-                      <img
-                        src="../src/Image/itau.png"
-                        alt="Logo Itaú"
-                        className="rounded-full w-20 h-20 md:w-20 md:h-20 mr-2"
-                      />
-                      <span className="text-5xl" >Itaú</span>
+                      <span className="text-5xl">Itaú</span>
                     </li>
-                    {/*Nubank*/}
                     <li
                       className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center justify-between"
                       onClick={() =>
                         selecionarConta({
                           nome: "Nubank",
-                          imagem: "../src/Image/nubank.png",
                         })
                       }
                     >
-                      <img
-                        src="../src/Image/nubank.png"
-                        alt="Logo Nubank"
-                        className="rounded-full w-20 h-20 md:w-20 md:h-20 mr-2"
-                      />
-                      <span className="text-5xl" >Nubank</span>
+                      <span className="text-5xl">Nubank</span>
                     </li>
-                    {/*Inter*/}
                     <li
                       className="py-2 px-4 hover:bg-gray-200 cursor-pointer flex items-center justify-between"
                       onClick={() =>
                         selecionarConta({
                           nome: "Inter",
-                          imagem: "../src/Image/intermedium.png",
                         })
                       }
                     >
-                      <img
-                        src="../src/Image/intermedium.png"
-                        alt="Logo Inter"
-                        className="rounded-full w-20 h-20 md:w-20 md:h-20 mr-2"
-                      />
-                      <span className="text-5xl" >Inter</span>
+                      <span className="text-5xl">Inter</span>
                     </li>
-                    {/* Adicione aqui os outros bancos conforme necessário */}
                   </ul>
                 </div>
               )}
@@ -260,7 +182,7 @@ const Contas = () => {
 
             <button
               type="submit"
-              className="bg-amareloPastel hover:bg-amber-300 text-5xl md:text-5xl text-black px-6 py-10 rounded-lg w-full mt-4  transition duration-300"
+              className="bg-amareloPastel hover:bg-amber-300 text-5xl md:text-5xl text-black px-6 py-10 rounded-lg w-full mt-4 transition duration-300"
             >
               Adicionar Conta
             </button>

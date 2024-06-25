@@ -12,6 +12,7 @@ import { Input } from "../input/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Select } from "../input/inputFormShow";
+import Cookies from "js-cookie";
 
 export default function CardPrincipalHome() {
   const [dados, setDados] = useState([]);
@@ -32,21 +33,9 @@ export default function CardPrincipalHome() {
     "Outros",
   ];
 
-  const contas = [
-    "Banco do Brasil",
-    "Caixa",
-    "Itau",
-    "Santander",
-    "Nubank",
-    "Bradesco",
-    "Inter"
-  ]
-
   const {
     register: registerReceita,
     handleSubmit: handleAdicionarReceitaForm,
-    onChange: handleCategoriaReceita,
-    onChange: handleContaReceita,
     formState: { errors: errorsReceita },
   } = useForm({
     resolver: zodResolver(receitaSchema),
@@ -55,8 +44,6 @@ export default function CardPrincipalHome() {
   const {
     register: registerDespesa,
     handleSubmit: handleAdicionarDespesaForm,
-    onChange: handleCategoriaDespesa,
-    onChange: handleContaDespesa,
     formState: { errors: errorsDespesa },
   } = useForm({
     resolver: zodResolver(despesaSchema),
@@ -65,6 +52,9 @@ export default function CardPrincipalHome() {
   useEffect(() => {
     async function fetchData() {
       try {
+        const token = Cookies.get("token");
+        const { id: contaId } = JSON.parse(atob(token.split('.')[1])); // Extrai o ID da conta do token JWT
+
         const responseReceitas = await puxarReceita();
         const responseDespesas = await puxarDespesa();
 
@@ -72,10 +62,7 @@ export default function CardPrincipalHome() {
           ? responseReceitas.results.map((item) => ({ ...item, receita: true }))
           : [];
         const despesas = Array.isArray(responseDespesas.results)
-          ? responseDespesas.results.map((item) => ({
-            ...item,
-            receita: false,
-          }))
+          ? responseDespesas.results.map((item) => ({ ...item, receita: false }))
           : [];
 
         const dadosCombinados = [...receitas, ...despesas].sort(
@@ -119,6 +106,11 @@ export default function CardPrincipalHome() {
   // Função para adicionar uma nova receita
   const handleAdicionarReceita = async (data) => {
     try {
+      const token = Cookies.get("token");
+      const { id: contaId } = JSON.parse(atob(token.split('.')[1])); // Extrai o ID da conta do token JWT
+
+      data.conta = "667af6399e38c02d16ae3cb7"; // Inclui o ID da conta no objeto data
+
       const response = await adicionarReceita(data);
       console.log("Dados retornados da receita", response);
 
@@ -134,6 +126,11 @@ export default function CardPrincipalHome() {
   // Função para adicionar uma nova despesa
   const handleAdicionarDespesa = async (data) => {
     try {
+      const token = Cookies.get("token");
+      const { id: contaId } = JSON.parse(atob(token.split('.')[1])); // Extrai o ID da conta do token JWT
+
+      data.conta = "667af6399e38c02d16ae3cb7"; // Inclui o ID da conta no objeto data
+
       const response = await adicionarDespesa(data);
       console.log("Dados retornados da despesa", response);
 
@@ -156,10 +153,7 @@ export default function CardPrincipalHome() {
         ? responseReceitas.results.map((item) => ({ ...item, receita: true }))
         : [];
       const despesas = Array.isArray(responseDespesas.results)
-        ? responseDespesas.results.map((item) => ({
-          ...item,
-          receita: false,
-        }))
+        ? responseDespesas.results.map((item) => ({ ...item, receita: false }))
         : [];
 
       const dadosAtualizados = [...receitas, ...despesas].sort(
@@ -288,37 +282,20 @@ export default function CardPrincipalHome() {
           <div className="bg-white p-8 rounded-lg">
             <h2 className="text-6xl mb-4">Adicionar Receita</h2>
             <form onSubmit={handleAdicionarReceitaForm(handleAdicionarReceita)}>
-
               <Input
                 type="number"
                 name="valor"
                 placeholder="Digite o valor"
                 register={registerReceita}
-
               />
-              <Select
-                name="conta"
-                onChange={handleContaReceita}
-                register={registerReceita}
-              >
-                <option value="" disabled hidden>
-                  Selecione uma conta
-                </option>
-                {contas.map((conta) => (
-                  <option key={conta} value={conta}>
-                    {conta}
-                  </option>
-                ))}
-              </Select>
               <Input
                 type="text"
                 name="descricao"
                 placeholder="Digite a descrição"
                 register={registerReceita}
               />
-<Select
-                name="conta"
-                onChange={handleCategoriaReceita}
+              <Select
+                name="categoria"
                 register={registerReceita}
               >
                 <option value="" disabled hidden>
@@ -367,34 +344,15 @@ export default function CardPrincipalHome() {
                 name="valor"
                 placeholder="Digite o valor"
                 register={registerDespesa}
-                error={errorsDespesa.valor?.message}
-
               />
-              <Select
-                name="conta"
-                
-                onChange={handleContaDespesa}
-                register={registerDespesa}
-              >
-                <option value="" disabled hidden>
-                  Selecione uma conta
-                </option>
-                {contas.map((conta) => (
-                  <option key={conta} value={conta}>
-                    {conta}
-                  </option>
-                ))}
-              </Select>
               <Input
                 type="text"
                 name="descricao"
                 placeholder="Digite a descrição"
                 register={registerDespesa}
-                error={errorsDespesa.descricao?.message}
               />
               <Select
                 name="categoria"
-                onChange={handleCategoriaDespesa}
                 register={registerDespesa}
               >
                 <option value="" disabled hidden>
@@ -406,13 +364,11 @@ export default function CardPrincipalHome() {
                   </option>
                 ))}
               </Select>
-              
               <Input
                 type="date"
                 name="data"
                 placeholder={"Adicione a data da despesa"}
                 register={registerDespesa}
-                error={errorsDespesa.data?.message}
               />
               <div className="flex justify-end mt-4">
                 <button
