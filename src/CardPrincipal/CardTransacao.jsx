@@ -1,9 +1,28 @@
 import { useContext, useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import { TransacaoContext } from "../Context/transacaoContext";
 import { pesqDescricaoTransacao } from "../services/transacaoServico";
-import { InputPes } from "../input/inputFormShow";
 import "./css/CardTransacao.css";
+
+
+ const InputPes = ({
+  type,
+  placeholder,
+  name,
+  value,
+  onChange,
+  className,
+}) => {
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      name={name}
+      value={value}
+      onChange={onChange}
+      className={className}
+    />
+  );
+};
 
 export function CardTransacao() {
   const { transacao, setTransacao } = useContext(TransacaoContext);
@@ -12,20 +31,15 @@ export function CardTransacao() {
   const [animate, setAnimate] = useState(false);
   const transactionsPerPage = 5;
 
-  useEffect(() => {
-    console.log("Token obtido dos cookies:", Cookies.get("token"));
-  }, []);
+  useEffect(() => {}, []);
 
   const handleSearch = async () => {
-    console.log("Termo de pesquisa:", descricao);
     await sendSearchToBackend(descricao);
   };
 
   const sendSearchToBackend = async (termo) => {
     try {
-      console.log("Enviando termo de pesquisa ao backend:", termo);
       const response = await pesqDescricaoTransacao({ descricao: termo });
-      console.log("Resposta do backend:", response);
 
       if (response && response.results && Array.isArray(response.results)) {
         // Ordenar transações por data antes de setar
@@ -35,12 +49,9 @@ export function CardTransacao() {
         setTransacao(sortedTransactions);
         setCurrentPage(1); // Resetar para a primeira página após a pesquisa
       } else {
-        console.log("Transação não localizada no servidor");
         setTransacao([]);
       }
-    } catch (error) {
-      console.log("Erro durante a pesquisa no backend:", error);
-    }
+    } catch (error) {}
   };
 
   const formatCurrency = (value) => {

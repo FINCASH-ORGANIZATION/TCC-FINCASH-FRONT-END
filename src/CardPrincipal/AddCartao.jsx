@@ -38,10 +38,7 @@ export default function AddCartao() {
     setContaSelecionada(conta);
     setContasDropdownAberto(false); // Fecha o dropdown após selecionar a conta
   };
-<<<<<<< HEAD
-=======
 
->>>>>>> 84f48fa3fa2067650e7ac6ebb6b944dec7bfec2e
   return (
     <div className="flex flex-col justify-center items-center">
       <span className="text-9xl text-white">Cartões de Crédito</span>

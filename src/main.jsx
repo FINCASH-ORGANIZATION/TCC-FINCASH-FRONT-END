@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./Welcome/Welcome.jsx";
 import ErrorPage from "./PaginaDeErro/RotaNaoEncontrada.jsx";
 import { Login } from "./Login/Login.jsx";
@@ -48,9 +50,10 @@ const router = createBrowserRouter([
         path: "/Contas",
         element: <Contas />,
       },
-
-      { path: "/Mostrar/Cartoes", element: <MostrarCartao /> },
-
+      {
+        path: "/Mostrar/Cartoes",
+        element: <MostrarCartao />,
+      },
       {
         path: "/Transacao",
         element: <Transacao />,
@@ -63,9 +66,9 @@ const router = createBrowserRouter([
   },
 ]);
 
-// Renderiza o App.jsx, que por sua vez está contendo as rotas, tais elas como: Pagina Welcome, login e afins. Isso tudo é renderizado e mostrado todo o esquema do front na tela.
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <ToastContainer />
     <UserProvider>
       <TransacaoProvider>
         <RouterProvider router={router} />

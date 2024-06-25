@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { receitaSchema, despesaSchema } from "../Schema/despesa&receitaSchema";
+import { useState, useEffect } from "react";
 import {
   puxarReceita,
   puxarDespesa,
@@ -31,17 +34,17 @@ export default function CardPrincipalHome() {
   const {
     register: registerReceita,
     handleSubmit: handleAdicionarReceitaForm,
-    // formState: { errors: errorsReceita },
+    formState: { errors: errorsReceita },
   } = useForm({
-    resolver: zodResolver(),
+    resolver: zodResolver(receitaSchema),
   });
 
   const {
     register: registerDespesa,
     handleSubmit: handleAdicionarDespesaForm,
-    // formState: { errors: errorsDespesa },
+    formState: { errors: errorsDespesa },
   } = useForm({
-    resolver: zodResolver(),
+    resolver: zodResolver(despesaSchema),
   });
 
   useEffect(() => {
@@ -66,6 +69,7 @@ export default function CardPrincipalHome() {
         setDados(dadosCombinados);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
+        toast.error("Erro ao buscar dados");
       } finally {
         setCarregando(false);
       }
@@ -98,24 +102,32 @@ export default function CardPrincipalHome() {
   };
 
   // Função para adicionar uma nova receita
-  const handleAdicionarReceita = async () => {
+  const handleAdicionarReceita = async (data) => {
     try {
-      await adicionarReceita(novaReceita);
+      console.log("Dados recebidos para adicionar receita:", data); // Adicionando console log para verificar dados recebidos
+      const response = await adicionarReceita(data);
+      console.log("Dados retornados da receita", response);
+      toast.success("Receita adicionada com sucesso!");
       fecharFormulario();
       await atualizarDados();
     } catch (error) {
       console.error("Erro ao adicionar receita:", error);
+      toast.error("Erro ao adicionar receita");
     }
   };
 
   // Função para adicionar uma nova despesa
-  const handleAdicionarDespesa = async () => {
+  const handleAdicionarDespesa = async (data) => {
     try {
-      await adicionarDespesa(novaDespesa);
+      console.log("Dados recebidos para adicionar despesa:", data); // Adicionando console log para verificar dados recebidos
+      const response = await adicionarDespesa(data);
+      console.log("Dados retornados da despesa", response);
+      toast.success("Despesa adicionada com sucesso!");
       fecharFormulario();
       await atualizarDados();
     } catch (error) {
       console.error("Erro ao adicionar despesa:", error);
+      toast.error("Erro ao adicionar despesa");
     }
   };
 
@@ -141,17 +153,19 @@ export default function CardPrincipalHome() {
       setDados(dadosAtualizados);
     } catch (error) {
       console.error("Erro ao buscar dados:", error);
+      toast.error("Erro ao atualizar dados");
     }
   };
 
   return (
     <div className="bg-cinzaClaro2 absolute w-9/12 h-6/12 mt-96 shadow-2xl shadow-black flex justify-center rounded-3xl">
+      <ToastContainer />
       <div className="bg-cinzaClaro2 w-full rounded-3xl">
         <div className="bg-cinzaClaro2 shadow-md rounded-3xl p-8">
           {carregando ? (
             <div className="flex flex-col items-center justify-center">
               <div
-                class="loader border-r-2 rounded-full border-yellow-500 bg-yellow-300 animate-bounce
+                className="loader border-r-2 rounded-full border-yellow-500 bg-yellow-300 animate-bounce
                 aspect-square w-20 flex justify-center items-center text-yellow-700 text-6xl"
               >
                 $
@@ -217,265 +231,157 @@ export default function CardPrincipalHome() {
                 </tbody>
               </table>
               <div className="flex justify-between mt-4">
-                <button
-                  onClick={() => setOffset(Math.max(offset - 5, 0))}
-                  className="bg-blue-500 text-white p-5 text-5xl rounded-lg hover:bg-blue-600"
-                  disabled={offset === 0}
-                >
-                  Voltar
-                </button>
-                <button
-                  onClick={() => setOffset(offset + 5)}
-                  className="bg-blue-500 text-white p-5 text-5xl rounded-lg hover:bg-blue-600"
-                  disabled={offset + 5 >= dados.length}
-                >
-                  Próximo
-                </button>
-                <button
-                  onClick={abrirFormularioReceita}
-                  className="bg-green-500 text-white p-5 text-5xl rounded-lg hover:bg-green-600"
-                >
-                  Adicionar Receita
-                </button>
-                <button
-                  onClick={abrirFormularioDespesa}
-                  className="bg-red-500 text-white p-5 text-5xl rounded-lg hover:bg-red-600"
-                >
-                  Adicionar Despesa
-                </button>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => setOffset(Math.max(offset - 5, 0))}
+                    className="bg-blue-500 text-white p-5 text-5xl rounded-lg hover:bg-blue-600"
+                    disabled={offset === 0}
+                  >
+                    Voltar
+                  </button>
+                  <button
+                    onClick={() => setOffset(offset + 5)}
+                    className="bg-blue-500 text-white p-5 text-5xl rounded-lg hover:bg-blue-600"
+                    disabled={offset + 5 >= dados.length}
+                  >
+                    Avançar
+                  </button>
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={abrirFormularioReceita}
+                    className="bg-green-500 text-white p-5 text-5xl rounded-lg hover:bg-green-600"
+                  >
+                    Adicionar Receita
+                  </button>
+                  <button
+                    onClick={abrirFormularioDespesa}
+                    className="bg-red-500 text-white p-5 text-5xl rounded-lg hover:bg-red-600"
+                  >
+                    Adicionar Despesa
+                  </button>
+                </div>
               </div>
-              {/* Formulário para adicionar nova receita */}
-              {mostrarFormReceita && (
-                <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-white p-8 rounded-lg shadow-lg">
-                    <h2 className="text-2xl font-semibold mb-4">
-                      Nova Receita
-                    </h2>
-                    <form
-                      onSubmit={handleAdicionarReceitaForm(
-                        handleAdicionarReceita
-                      )}
-                    >
-                      <div className="mb-4">
-                        <p>Valor</p>
-                        <Input
-                          type="text"
-                          name="descricao"
-                          register={registerReceita}
-                          value={novaReceita.valor}
-                          onChange={(e) =>
-                            setNovaReceita({
-                              ...novaReceita,
-                              descricao: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          htmlFor="categoria"
-                          className="block text-gray-700 text-xl font-medium mb-2"
-                        >
-                          Data
-                        </label>
-                        descricao, categoria,
-                        <Input
-                          type="numb"
-                          name="data"
-                          value={novaReceita.data}
-                          onChange={(e) =>
-                            setNovaReceita({
-                              ...novaReceita,
-                              data: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          htmlFor="valor"
-                          className="block text-gray-700 text-xl font-medium mb-2"
-                        >
-                          Descrição
-                        </label>
-                        <Input
-                          type="number"
-                          name="descricao"
-                          value={novaReceita.descricao}
-                          onChange={(e) =>
-                            setNovaReceita({
-                              ...novaReceita,
-                              descricao: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          htmlFor="data"
-                          className="block text-gray-700 text-xl font-medium mb-2"
-                        >
-                          Categoria
-                        </label>
-                        <input
-                          type="categoria"
-                          id="data"
-                          value={novaReceita.categoria}
-                          onChange={(e) =>
-                            setNovaReceita({
-                              ...novaReceita,
-                              categoria: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="flex justify-end">
-                        <button
-                          type="button"
-                          onClick={fecharFormulario}
-                          className="bg-gray-300 text-gray-700 p-3 rounded-lg mr-2 hover:bg-gray-400"
-                        >
-                          Cancelar
-                        </button>
-                        <button
-                          type="submit"
-                          className="bg-green-500 text-white p-3 rounded-lg hover:bg-green-600"
-                        >
-                          Adicionar
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              )}
-
-              {/* Formulário para adicionar nova despesa */}
-              {mostrarFormDespesa && (
-                <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center">
-                  <div className="bg-white p-8 rounded-lg shadow-lg">
-                    <h2 className="text-2xl font-semibold mb-4">
-                      Nova Despesa
-                    </h2>
-                    <form
-                      onSubmit={handleAdicionarDespesaForm(
-                        handleAdicionarDespesa
-                      )}
-                    >
-                      <div className="mb-4">
-                        <Input
-                          htmlFor="descricao"
-                          className="block text-gray-700 text-xl font-medium mb-2"
-                        >
-                          Valor
-                        </Input>
-                        <input
-                          type="text"
-                          id="descricao"
-                          value={novaDespesa.valor}
-                          onChange={(e) =>
-                            setNovaDespesa({
-                              ...novaDespesa,
-                              descricao: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          htmlFor="categoria"
-                          className="block text-gray-700 text-xl font-medium mb-2"
-                        >
-                          Categoria
-                        </label>
-                        <Input
-                          type="text"
-                          name="data"
-                          value={novaDespesa.data}
-                          onChange={(e) =>
-                            setNovaDespesa({
-                              ...novaDespesa,
-                              data: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          htmlFor="valor"
-                          className="block text-gray-700 text-xl font-medium mb-2"
-                        >
-                          Valor
-                        </label>
-                        <input
-                          type="text"
-                          name="descricao"
-                          value={novaDespesa.descricao}
-                          onChange={(e) =>
-                            setNovaDespesa({
-                              ...novaDespesa,
-                              descricao: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="mb-4">
-                        <label
-                          htmlFor="data"
-                          className="block text-gray-700 text-xl font-medium mb-2"
-                        >
-                          Data
-                        </label>
-                        <input
-                          type="text"
-                          name="categoria"
-                          value={novaDespesa.categoria}
-                          onChange={(e) =>
-                            setNovaDespesa({
-                              ...novaDespesa,
-                              categoria: e.target.value,
-                            })
-                          }
-                          className="w-full border-gray-300 rounded-lg p-3"
-                          required
-                        />
-                      </div>
-                      <div className="flex justify-end">
-                        <button
-                          type="button"
-                          onClick={fecharFormulario}
-                          className="bg-gray-300 text-gray-700 p-3 rounded-lg mr-2 hover:bg-gray-400"
-                        >
-                          Cancelar
-                        </button>
-                        <button
-                          type="submit"
-                          className="bg-red-500 text-white p-3 rounded-lg hover:bg-red-600"
-                        >
-                          Adicionar
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              )}
             </>
           )}
         </div>
       </div>
+
+      {/* Formulário de Nova Receita */}
+      {mostrarFormReceita && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+          <div className="bg-white p-8 rounded-lg">
+            <h2 className="text-6xl mb-4">Adicionar Receita</h2>
+            <form onSubmit={handleAdicionarReceitaForm(handleAdicionarReceita)}>
+              <Input
+                label="Descrição"
+                type="text"
+                name="descricao"
+                placeholder="Digite a descrição"
+                register={registerReceita}
+                error={errorsReceita.descricao?.message}
+              />
+              <Input
+                label="Categoria"
+                type="text"
+                name="categoria"
+                placeholder="Digite a categoria"
+                register={registerReceita}
+                error={errorsReceita.categoria?.message}
+              />
+              <Input
+                label="Valor"
+                type="number"
+                name="valor"
+                placeholder="Digite o valor"
+                register={registerReceita}
+                error={errorsReceita.valor?.message}
+              />
+              <Input
+                label="Data"
+                type="date"
+                name="data"
+                register={registerReceita}
+                placeholder={"Adicione a data da receita"}
+                error={errorsReceita.data?.message}
+              />
+              <div className="flex justify-end mt-4">
+                <button
+                  type="button"
+                  onClick={fecharFormulario}
+                  className="bg-gray-500 text-white p-5 text-5xl rounded-lg hover:bg-gray-600 mr-2"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="bg-green-500 text-white p-5 text-5xl rounded-lg hover:bg-green-600"
+                >
+                  Adicionar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Formulário de Nova Despesa */}
+      {mostrarFormDespesa && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+          <div className="bg-white p-8 rounded-lg">
+            <h2 className="text-6xl mb-4">Adicionar Despesa</h2>
+            <form onSubmit={handleAdicionarDespesaForm(handleAdicionarDespesa)}>
+              <Input
+                label="Descrição"
+                type="text"
+                name="descricao"
+                placeholder="Digite a descrição"
+                register={registerDespesa}
+                error={errorsDespesa.descricao?.message}
+              />
+              <Input
+                label="Categoria"
+                type="text"
+                name="categoria"
+                placeholder="Digite a categoria"
+                register={registerDespesa}
+                error={errorsDespesa.categoria?.message}
+              />
+              <Input
+                label="Valor"
+                type="number"
+                name="valor"
+                placeholder="Digite o valor"
+                register={registerDespesa}
+                error={errorsDespesa.valor?.message}
+              />
+              <Input
+                label="Data"
+                type="date"
+                name="data"
+                placeholder={"Adicione a data da despesa"}
+                register={registerDespesa}
+                error={errorsDespesa.data?.message}
+              />
+              <div className="flex justify-end mt-4">
+                <button
+                  type="button"
+                  onClick={fecharFormulario}
+                  className="bg-gray-500 text-white p-5 text-5xl rounded-lg hover:bg-gray-600 mr-2"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="bg-red-500 text-white p-5 text-5xl rounded-lg hover:bg-red-600"
+                >
+                  Adicionar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

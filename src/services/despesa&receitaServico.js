@@ -20,10 +20,10 @@ export async function puxarDespesa() {
   }
 }
 
-export async function adicionarDespesa() {
+export async function adicionarDespesa(data) {
   try {
     console.log("Iniciando busca de receitas...");
-    const response = await axios.get(`${baseURL}/receita/lista`, {
+    const response = await axios.post(`${baseURL}/receita/`, data, {
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
@@ -53,10 +53,10 @@ export async function puxarReceita() {
   }
 }
 
-export async function adicionarReceita() {
+export async function adicionarReceita(data) {
   try {
     console.log("Iniciando busca de receitas...");
-    const response = await axios.get(`${baseURL}/receita/`, {
+    const response = await axios.post(`${baseURL}/receita/`, data, {
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
       },

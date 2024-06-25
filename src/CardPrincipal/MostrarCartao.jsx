@@ -18,20 +18,24 @@ const MostrarCartao = () => {
     }
   }, []);
 
-  async function buscarCartoes() {
-    try {
-      const response = await pesCartao();
-      if (response && Array.isArray(response.results)) {
-        setCartoes(response.results);
-      } else {
-        setCartoes([]);
-        console.error("Resposta inesperada ao buscar cartões:", response);
-      }
-    } catch (error) {
-      console.error("Erro ao buscar cartões:", error);
+  // No arquivo frontend onde você consome as rotas
+
+
+async function buscarCartoes() {
+  try {
+    const response = await pesCartao();
+    if (response && Array.isArray(response.results)) {
+      setCartoes(response.results);
+    } else {
       setCartoes([]);
+      console.error("Resposta inesperada ao buscar cartões:", response);
     }
+  } catch (error) {
+    console.error("Erro ao buscar cartões:", error);
+    setCartoes([]);
   }
+}
+
 
   const indiceUltimoCartao = paginaAtual * cartoesPorPagina;
   const indicePrimeiroCartao = indiceUltimoCartao - cartoesPorPagina;

@@ -31,7 +31,7 @@ export async function puxarTransacaoUsuario() {
   }
 }
 
-export async function CriarTransacaoUsuario(data) {
+export async function criarTransacaoUsuario(data) {
   try {
     const response = await axios.post(`${baseURL}/transacao/`, data, {
       headers: {

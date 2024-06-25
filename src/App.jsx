@@ -1,7 +1,14 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  return <Outlet />
+  return (
+    <>
+      <ToastContainer />
+      <Outlet />
+    </>
+  );
 }
 
-export default App
+export default App;

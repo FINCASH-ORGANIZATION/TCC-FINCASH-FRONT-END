@@ -47,6 +47,5 @@ export async function pesCartao() {
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar cartão:", error);
-    throw error; // Lançando o erro novamente para ser tratado onde a função for chamada, se necessário
   }
 }

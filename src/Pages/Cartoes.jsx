@@ -32,7 +32,7 @@ export default function App() {
         ) : (
           <div className="flex flex-col md:flex-row mt-10 space-y-10 md:space-y-0 md:space-x-10">
             <div className="flex flex-col justify-center items-center">
-              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl shadow-black transition-transform duration-500 transform hover:scale-105">
+              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl hover:shadow-3xl transition duration-500 transform hover:scale-105">
                 <button
                   className="flex flex-col justify-center items-center"
                   onClick={handleMostrarAddCartao}
@@ -49,13 +49,13 @@ export default function App() {
               </div>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl shadow-black transition-transform duration-500 transform hover:scale-105">
+              <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl hover:shadow-3xl transition duration-500 transform hover:scale-105">
                 <button
                   className="flex flex-col justify-center items-center"
                   onClick={handleMostrarCartoes}
                 >
                   <img
-                    src="../src/Image/cartoes.png"
+                    src="../src/Image/cards.png"
                     alt=""
                     className="w-20 md:w-44"
                   />

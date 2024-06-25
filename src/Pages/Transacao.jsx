@@ -1,9 +1,10 @@
-import NavigationBar from "../NavBar/NavBar.jsx";
+// Cartoes.jsx
+import { useState } from "react";
 import { HeaderHome } from "../header/header.jsx";
+import NavigationBar from "../NavBar/NavBar.jsx";
 import { CardTransacao } from "../CardPrincipal/CardTransacao.jsx";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { Input } from "../input/inputFormShow.jsx";
+import { Input, Select } from "../input/inputFormShow.jsx";
 
 export default function Cartoes() {
   const [showCardTransacao, setShowCardTransacao] = useState(false);
@@ -104,37 +105,24 @@ export default function Cartoes() {
                 placeholder="Valor"
                 name="valor"
                 register={register}
-                className="inputForm"
               />
               <Input
                 type="date"
                 placeholder="Data"
                 name="data"
                 register={register}
-                className="inputForm"
               />
               <Input
                 type="text"
                 placeholder="Descrição"
                 name="descricao"
                 register={register}
-                className="inputForm"
               />
-              <div className="inputForm">
-                <select
-                  id="categoria"
+              <div>
+                <Select
                   name="categoria"
                   onChange={handleCategoriaChange}
-                  defaultValue="" // Valor inicial vazio
-                  className="block mt-1 px-3 py-2 rounded-md bg-white border border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-                  style={{
-                    width: "100%",
-                    height: "7rem",
-                    paddingLeft: "4px",
-                    borderRadius: "15px",
-                    fontFamily: "monospace",
-                    fontSize: "60px",
-                  }}
+                  register={register}
                 >
                   <option value="" disabled hidden>
                     Selecione uma categoria
@@ -144,38 +132,29 @@ export default function Cartoes() {
                       {categoria}
                     </option>
                   ))}
-                </select>
+                </Select>
               </div>
-              <select
-                id="tipoTransacao"
-                name="tipoTransacao"
-                onChange={handleTransacaoChange}
-                defaultValue="" // Valor inicial vazio
-                className="block mt-1 px-3 py-2 rounded-md bg-white border border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-                style={{
-                  width: "100%",
-                  height: "7rem",
-                  paddingLeft: "4px",
-                  borderRadius: "15px",
-                  fontFamily: "monospace",
-                  fontSize: "60px",
-                }}
-              >
-                <option value="" disabled hidden>
-                  Tipo da transação
-                </option>
-                {tipoTransacao.map((tipoTransacao) => (
-                  <option key={tipoTransacao} value={tipoTransacao}>
-                    {tipoTransacao}
+              <div>
+                <Select
+                  name="tipoTransacao"
+                  onChange={handleTransacaoChange}
+                  register={register}
+                >
+                  <option value="" disabled hidden>
+                    Tipo da transação
                   </option>
-                ))}
-              </select>
+                  {tipoTransacao.map((tipo) => (
+                    <option key={tipo} value={tipo}>
+                      {tipo}
+                    </option>
+                  ))}
+                </Select>
+              </div>
               <Input
                 type="text"
                 placeholder="Conta"
                 name="conta"
                 register={register}
-                className="inputForm"
               />
             </div>
             <button
