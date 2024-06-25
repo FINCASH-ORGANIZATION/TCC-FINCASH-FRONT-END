@@ -1,19 +1,31 @@
 // Cartoes.jsx
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { HeaderHome } from "../header/header.jsx";
 import NavigationBar from "../NavBar/NavBar.jsx";
 import { CardTransacao } from "../CardPrincipal/CardTransacao.jsx";
 import { useForm } from "react-hook-form";
 import { Input, Select } from "../input/inputFormShow.jsx";
+import { criarTransacaoUsuario } from "../services/transacaoServico.js";
 
 export default function Cartoes() {
   const [showCardTransacao, setShowCardTransacao] = useState(false);
   const [showFormulario, setShowFormulario] = useState(false);
   const { register, handleSubmit, setValue } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data); // Aqui você pode enviar os dados para onde precisar
-  };
+  async function onSubmit(data) {
+    try {
+      const response = await criarTransacaoUsuario(data);
+      console.log(response);
+      toast.success("Transação feita com sucesso")
+      console.log(data); // Aqui você pode enviar os dados para onde precisar
+    } catch (error) {
+      console.error('Ocorreu um erro ao criar a transação:', error);
+      toast.error(error)
+      // Aqui você pode lidar com o erro de forma apropriada, como enviar um feedback ao usuário ou registrar o erro
+    }
+  }
+
 
   const handleVerTransacoes = () => {
     setShowCardTransacao(true);
@@ -56,7 +68,7 @@ export default function Cartoes() {
       <div className="bg-cinzaEscuro w-screen h-screen font-mono flex justify-center items-center">
         {!showCardTransacao && !showFormulario && (
           <div className="flex flex-col md:flex-row mt-10 space-y-10 md:space-y-0 md:space-x-10">
-            <div className="flex flex-col justify-center items-center">
+            <div className="f lex flex-col justify-center items-center">
               <div className="bg-white p-10 md:p-20 rounded-3xl shadow-2xl hover:shadow-3xl transition duration-500 transform hover:scale-105">
                 <button
                   className="flex flex-col justify-center items-center"
@@ -80,7 +92,7 @@ export default function Cartoes() {
                   onClick={handleVerTransacoes}
                 >
                   <img
-                    src="../src/Image/cartoes.png"
+                    src="../src/Image/cards.png"
                     alt=""
                     className="w-20 md:w-44"
                   />

@@ -7,6 +7,7 @@ import Cookies from "js-cookie";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { perfilSchema } from "../Schema/perfilSchema.js";
+import NavigationBar from "../NavBar/NavBar.jsx";
 
 export default function Perfil() {
   const navigate = useNavigate();
@@ -191,7 +192,9 @@ export default function Perfil() {
             </button>
           </div>
         </div>
+      
       </div>
+      
     </>
   );
 }

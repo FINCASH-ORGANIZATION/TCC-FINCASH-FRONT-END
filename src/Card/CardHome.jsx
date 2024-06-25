@@ -9,14 +9,8 @@ export function CardHome() {
   useEffect(() => {
     async function fetchDadosFinanceiros() {
       try {
-        const response = await exibirSaldo(); // Suponha que exibirSaldo retorne um objeto com saldo, receitas e despesas
-        console.log(response); // Verifica a resposta no console para depuração
-
-        setSaldo(response.saldo);
-
         // Misturar receitas e despesas em uma única lista
         const todasTransacoes = [...response.receitas, ...response.despesas];
-
         // Embaralhar a ordem das transações
         const transacoesEmbaralhadas = shuffleArray(todasTransacoes);
 
@@ -45,7 +39,6 @@ export function CardHome() {
           <div className="flex flex-col justify-between">
             <h1 className="text-white text-7xl">Saldo</h1>
             <span className="text-white text-8xl">
-              R$ {saldo.toFixed(2)}
             </span>{" "}
             {/* Exibe o saldo formatado */}
           </div>

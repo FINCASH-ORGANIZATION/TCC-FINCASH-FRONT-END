@@ -8,9 +8,10 @@ import {
   adicionarReceita,
   adicionarDespesa,
 } from "../services/despesa&receitaServico";
-import { Input } from "../input/inputAdicionar";
+import { Input } from "../input/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Select } from "../input/inputFormShow";
 
 export default function CardPrincipalHome() {
   const [dados, setDados] = useState([]);
@@ -18,22 +19,34 @@ export default function CardPrincipalHome() {
   const [carregando, setCarregando] = useState(true);
   const [mostrarFormReceita, setMostrarFormReceita] = useState(false);
   const [mostrarFormDespesa, setMostrarFormDespesa] = useState(false);
-  const [novaReceita, setNovaReceita] = useState({
-    descricao: "",
-    categoria: "",
-    valor: 0,
-    data: new Date().toISOString().substr(0, 10),
-  });
-  const [novaDespesa, setNovaDespesa] = useState({
-    descricao: "",
-    categoria: "",
-    valor: 0,
-    data: new Date().toISOString().substr(0, 10),
-  });
+
+  const categorias = [
+    "Salário",
+    "Alimentação",
+    "Transporte",
+    "Saúde",
+    "Educação",
+    "Lazer e entretenimento",
+    "Viagens",
+    "Emergências",
+    "Outros",
+  ];
+
+  const contas = [
+    "Banco do Brasil",
+    "Caixa",
+    "Itau",
+    "Santander",
+    "Nubank",
+    "Bradesco",
+    "Inter"
+  ]
 
   const {
     register: registerReceita,
     handleSubmit: handleAdicionarReceitaForm,
+    onChange: handleCategoriaReceita,
+    onChange: handleContaReceita,
     formState: { errors: errorsReceita },
   } = useForm({
     resolver: zodResolver(receitaSchema),
@@ -42,6 +55,8 @@ export default function CardPrincipalHome() {
   const {
     register: registerDespesa,
     handleSubmit: handleAdicionarDespesaForm,
+    onChange: handleCategoriaDespesa,
+    onChange: handleContaDespesa,
     formState: { errors: errorsDespesa },
   } = useForm({
     resolver: zodResolver(despesaSchema),
@@ -58,9 +73,9 @@ export default function CardPrincipalHome() {
           : [];
         const despesas = Array.isArray(responseDespesas.results)
           ? responseDespesas.results.map((item) => ({
-              ...item,
-              receita: false,
-            }))
+            ...item,
+            receita: false,
+          }))
           : [];
 
         const dadosCombinados = [...receitas, ...despesas].sort(
@@ -104,9 +119,9 @@ export default function CardPrincipalHome() {
   // Função para adicionar uma nova receita
   const handleAdicionarReceita = async (data) => {
     try {
-      console.log("Dados recebidos para adicionar receita:", data); // Adicionando console log para verificar dados recebidos
       const response = await adicionarReceita(data);
       console.log("Dados retornados da receita", response);
+
       toast.success("Receita adicionada com sucesso!");
       fecharFormulario();
       await atualizarDados();
@@ -119,9 +134,9 @@ export default function CardPrincipalHome() {
   // Função para adicionar uma nova despesa
   const handleAdicionarDespesa = async (data) => {
     try {
-      console.log("Dados recebidos para adicionar despesa:", data); // Adicionando console log para verificar dados recebidos
       const response = await adicionarDespesa(data);
       console.log("Dados retornados da despesa", response);
+
       toast.success("Despesa adicionada com sucesso!");
       fecharFormulario();
       await atualizarDados();
@@ -142,9 +157,9 @@ export default function CardPrincipalHome() {
         : [];
       const despesas = Array.isArray(responseDespesas.results)
         ? responseDespesas.results.map((item) => ({
-            ...item,
-            receita: false,
-          }))
+          ...item,
+          receita: false,
+        }))
         : [];
 
       const dadosAtualizados = [...receitas, ...despesas].sort(
@@ -273,37 +288,53 @@ export default function CardPrincipalHome() {
           <div className="bg-white p-8 rounded-lg">
             <h2 className="text-6xl mb-4">Adicionar Receita</h2>
             <form onSubmit={handleAdicionarReceitaForm(handleAdicionarReceita)}>
+
               <Input
-                label="Descrição"
-                type="text"
-                name="descricao"
-                placeholder="Digite a descrição"
-                register={registerReceita}
-                error={errorsReceita.descricao?.message}
-              />
-              <Input
-                label="Categoria"
-                type="text"
-                name="categoria"
-                placeholder="Digite a categoria"
-                register={registerReceita}
-                error={errorsReceita.categoria?.message}
-              />
-              <Input
-                label="Valor"
                 type="number"
                 name="valor"
                 placeholder="Digite o valor"
                 register={registerReceita}
-                error={errorsReceita.valor?.message}
+
               />
+              <Select
+                name="conta"
+                onChange={handleContaReceita}
+                register={registerReceita}
+              >
+                <option value="" disabled hidden>
+                  Selecione uma conta
+                </option>
+                {contas.map((conta) => (
+                  <option key={conta} value={conta}>
+                    {conta}
+                  </option>
+                ))}
+              </Select>
               <Input
-                label="Data"
+                type="text"
+                name="descricao"
+                placeholder="Digite a descrição"
+                register={registerReceita}
+              />
+<Select
+                name="conta"
+                onChange={handleCategoriaReceita}
+                register={registerReceita}
+              >
+                <option value="" disabled hidden>
+                  Selecione uma categoria
+                </option>
+                {categorias.map((categoria) => (
+                  <option key={categoria} value={categoria}>
+                    {categoria}
+                  </option>
+                ))}
+              </Select>
+              <Input
                 type="date"
                 name="data"
                 register={registerReceita}
                 placeholder={"Adicione a data da receita"}
-                error={errorsReceita.data?.message}
               />
               <div className="flex justify-end mt-4">
                 <button
@@ -332,31 +363,51 @@ export default function CardPrincipalHome() {
             <h2 className="text-6xl mb-4">Adicionar Despesa</h2>
             <form onSubmit={handleAdicionarDespesaForm(handleAdicionarDespesa)}>
               <Input
-                label="Descrição"
+                type="number"
+                name="valor"
+                placeholder="Digite o valor"
+                register={registerDespesa}
+                error={errorsDespesa.valor?.message}
+
+              />
+              <Select
+                name="conta"
+                
+                onChange={handleContaDespesa}
+                register={registerDespesa}
+              >
+                <option value="" disabled hidden>
+                  Selecione uma conta
+                </option>
+                {contas.map((conta) => (
+                  <option key={conta} value={conta}>
+                    {conta}
+                  </option>
+                ))}
+              </Select>
+              <Input
                 type="text"
                 name="descricao"
                 placeholder="Digite a descrição"
                 register={registerDespesa}
                 error={errorsDespesa.descricao?.message}
               />
-              <Input
-                label="Categoria"
-                type="text"
+              <Select
                 name="categoria"
-                placeholder="Digite a categoria"
+                onChange={handleCategoriaDespesa}
                 register={registerDespesa}
-                error={errorsDespesa.categoria?.message}
-              />
+              >
+                <option value="" disabled hidden>
+                  Selecione uma categoria
+                </option>
+                {categorias.map((categoria) => (
+                  <option key={categoria} value={categoria}>
+                    {categoria}
+                  </option>
+                ))}
+              </Select>
+              
               <Input
-                label="Valor"
-                type="number"
-                name="valor"
-                placeholder="Digite o valor"
-                register={registerDespesa}
-                error={errorsDespesa.valor?.message}
-              />
-              <Input
-                label="Data"
                 type="date"
                 name="data"
                 placeholder={"Adicione a data da despesa"}
